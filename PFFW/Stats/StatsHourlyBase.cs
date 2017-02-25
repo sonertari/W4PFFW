@@ -34,6 +34,10 @@ namespace PFFW
         {
             var date = formatDate();
 
+            // Reset in case there is no data for the requested datetime
+            jsonHourStats = new JObject();
+            jsonAllMinuteStats = new JObject();
+
             // TODO: Is there a better way?
             if (jsonHasKey(jsonStats["Date"], date) && jsonHasKey(jsonStats["Date"][date], "Hours") && jsonHasKey(jsonStats["Date"][date]["Hours"], hour))
             {
@@ -47,7 +51,7 @@ namespace PFFW
 
         protected string formatDate()
         {
-            return monthNames[month] + " " + day;
+            return monthNames[month] + " " + day.PadLeft(2, '0');
         }
 
         override protected bool isDailyChart()

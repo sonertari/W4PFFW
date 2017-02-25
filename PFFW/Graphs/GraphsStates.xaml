@@ -1,0 +1,44 @@
+﻿<!--
+Copyright (C) 2017 Soner Tari
+
+This file is part of PFFW.
+
+PFFW is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+PFFW is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<local:GraphsBase x:Class="PFFW.GraphsStates"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PFFW"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="600">
+    <ScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="State Statistics" Grid.Row="0" />
+            <Image x:Name="statesImage" Grid.Row="1" />
+            <Label Content="State Searches vs Packets" Grid.Row="2" />
+            <Image x:Name="searchesPktsImage" Grid.Row="3" />
+        </Grid>
+    </ScrollViewer>
+</local:GraphsBase>

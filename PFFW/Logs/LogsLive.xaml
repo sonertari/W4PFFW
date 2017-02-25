@@ -1,0 +1,69 @@
+﻿<!--
+Copyright (C) 2017 Soner Tari
+
+This file is part of PFFW.
+
+PFFW is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+PFFW is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<local:LogsBase x:Class="PFFW.LogsLive"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PFFW"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="500*"/>
+        </Grid.RowDefinitions>
+        <ToolBar Grid.Row="0">
+            <Label Content="Lines per page:" />
+            <TextBox x:Name="linesPerPage" />
+            <Label Content="Regexp:" />
+            <TextBox x:Name="regex" Width="200" />
+            <Button x:Name="btnRefresh" Content="Refresh" Click="button_Click" />
+        </ToolBar>
+        <ScrollViewer Grid.Row="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Content="Logs" Grid.Row="0" />
+                <DataGrid x:Name="logsDataGrid" AutoGenerateColumns="False" LoadingRow="dataGrid_LoadingRow" Grid.Row="1" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Line" Binding="{Binding [0]}" />
+                        <DataGridTextColumn Header="Date" Binding="{Binding [2]}" />
+                        <DataGridTextColumn Header="Time" Binding="{Binding [3]}" />
+                        <DataGridTextColumn Header="Rule" Binding="{Binding [1]}" />
+                        <DataGridTextColumn Header="Act" Binding="{Binding [4]}" />
+                        <DataGridTextColumn Header="Dir" Binding="{Binding [5]}" />
+                        <DataGridTextColumn Header="If" Binding="{Binding [6]}" />
+                        <DataGridTextColumn Header="SrcIP" Binding="{Binding [7]}" />
+                        <DataGridTextColumn Header="SPort" Binding="{Binding [8]}" />
+                        <DataGridTextColumn Header="DstIP" Binding="{Binding [9]}" />
+                        <DataGridTextColumn Header="DPort" Binding="{Binding [10]}" />
+                        <DataGridTextColumn Header="Type" Binding="{Binding [11]}" />
+                        <DataGridTextColumn Header="Log" Binding="{Binding [12]}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</local:LogsBase>

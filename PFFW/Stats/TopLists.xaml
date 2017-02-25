@@ -1,0 +1,98 @@
+﻿<!--
+Copyright (C) 2017 Soner Tari
+
+This file is part of PFFW.
+
+PFFW is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+PFFW is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<UserControl x:Class="PFFW.TopLists"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PFFW"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="400">
+    <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Visible">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" Margin="0,0,1,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label x:Name="srcAddrsLabel" Content="Source addresses" Grid.Row="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="2,0" Background="Silver" />
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="srcAddrsCounts" Grid.Column="0" HorizontalAlignment="Left" TextAlignment="Right" Margin="0,0,1,0" Background="Gray" Foreground="White" Padding="2,0" />
+                    <TextBlock x:Name="srcAddrs" Grid.Column="1" HorizontalAlignment="Left" TextAlignment="Left" Padding="2,0" />
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="1" Margin="0,0,1,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label x:Name="dstAddrsLabel" Content="Destination addresses" Grid.Row="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="2,0" Background="Silver" />
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="dstAddrsCounts" Grid.Column="0" HorizontalAlignment="Left" TextAlignment="Right" Margin="0,0,1,0" Background="Gray" Foreground="White" Padding="2,0" />
+                    <TextBlock x:Name="dstAddrs" Grid.Column="1" HorizontalAlignment="Left" TextAlignment="Left" Padding="2,0" />
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="2" Margin="0,0,1,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label x:Name="dstPortsLabel" Content="Destination ports" Grid.Row="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="2,0" Background="Silver" />
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="dstPortsCounts" Grid.Column="0" HorizontalAlignment="Left" TextAlignment="Right" Margin="0,0,1,0" Background="Gray" Foreground="White" Padding="2,0" />
+                    <TextBlock x:Name="dstPorts" Grid.Column="1" HorizontalAlignment="Left" TextAlignment="Left" Padding="2,0" />
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="3" Margin="0,0,1,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label x:Name="pktTypesLabel" Content="Packet types" Grid.Row="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="2,0" Background="Silver" />
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="pktTypesCounts" Grid.Column="0" HorizontalAlignment="Left" TextAlignment="Right" Margin="0,0,1,0" Background="Gray" Foreground="White" Padding="2,0" />
+                    <TextBlock x:Name="pktTypes" Grid.Column="1" HorizontalAlignment="Left" TextAlignment="Left" Padding="2,0" />
+                </Grid>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

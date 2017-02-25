@@ -1,0 +1,118 @@
+﻿<!--
+Copyright (C) 2017 Soner Tari
+
+This file is part of PFFW.
+
+PFFW is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+PFFW is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<local:InfoBase x:Class="PFFW.InfoSystem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PFFW"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="600">
+    <local:InfoBase.Resources>
+        <BitmapImage x:Key="stop" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="../Images/stop.png"/>
+        <BitmapImage x:Key="run" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="../Images/run.png"/>
+    </local:InfoBase.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="500*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <ToolBar>
+                <Image x:Name="symonStatusImage" Source="{DynamicResource stop}"/>
+                <Label x:Name="symonStatus" Content="Symon status" />
+                <Image x:Name="symuxStatusImage" Source="{DynamicResource stop}"/>
+                <Label x:Name="symuxStatus" Content="Symux status" />
+            </ToolBar>
+        </Grid>
+        <ScrollViewer Grid.Row="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="4"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="4"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Content="Symon" Grid.Row="0" />
+                <DataGrid x:Name="symonDataGrid" AutoGenerateColumns="False" AlternatingRowBackground="{DynamicResource {x:Static SystemColors.ControlColor}}" AlternationCount="2" Grid.Row="1" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="PID" Binding="{Binding [0]}" />
+                        <DataGridTextColumn Header="STARTED" Binding="{Binding [1]}" />
+                        <DataGridTextColumn Header="%CPU" Binding="{Binding [2]}" />
+                        <DataGridTextColumn Header="TIME" Binding="{Binding [3]}" />
+                        <DataGridTextColumn Header="%MEM" Binding="{Binding [4]}" />
+                        <DataGridTextColumn Header="RSS" Binding="{Binding [5]}" />
+                        <DataGridTextColumn Header="VSZ" Binding="{Binding [6]}" />
+                        <DataGridTextColumn Header="STAT" Binding="{Binding [7]}" />
+                        <DataGridTextColumn Header="PRI" Binding="{Binding [8]}" />
+                        <DataGridTextColumn Header="NI" Binding="{Binding [9]}" />
+                        <DataGridTextColumn Header="USER" Binding="{Binding [10]}" />
+                        <DataGridTextColumn Header="GROUP" Binding="{Binding [11]}" />
+                        <DataGridTextColumn Header="COMMAND" Binding="{Binding [12]}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+                <GridSplitter HorizontalAlignment="Stretch" Grid.Row="2" />
+                <Label Content="Symux" Grid.Row="3" />
+                <DataGrid x:Name="symuxDataGrid" AutoGenerateColumns="False" AlternatingRowBackground="{DynamicResource {x:Static SystemColors.ControlColor}}" AlternationCount="2" Grid.Row="4" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="PID" Binding="{Binding [0]}" />
+                        <DataGridTextColumn Header="STARTED" Binding="{Binding [1]}" />
+                        <DataGridTextColumn Header="%CPU" Binding="{Binding [2]}" />
+                        <DataGridTextColumn Header="TIME" Binding="{Binding [3]}" />
+                        <DataGridTextColumn Header="%MEM" Binding="{Binding [4]}" />
+                        <DataGridTextColumn Header="RSS" Binding="{Binding [5]}" />
+                        <DataGridTextColumn Header="VSZ" Binding="{Binding [6]}" />
+                        <DataGridTextColumn Header="STAT" Binding="{Binding [7]}" />
+                        <DataGridTextColumn Header="PRI" Binding="{Binding [8]}" />
+                        <DataGridTextColumn Header="NI" Binding="{Binding [9]}" />
+                        <DataGridTextColumn Header="USER" Binding="{Binding [10]}" />
+                        <DataGridTextColumn Header="GROUP" Binding="{Binding [11]}" />
+                        <DataGridTextColumn Header="COMMAND" Binding="{Binding [12]}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+                <GridSplitter HorizontalAlignment="Stretch" Grid.Row="5" />
+                <Label Content="System" Grid.Row="6" />
+                <DataGrid x:Name="systemDataGrid" AutoGenerateColumns="False" AlternatingRowBackground="{DynamicResource {x:Static SystemColors.ControlColor}}" AlternationCount="2" Grid.Row="7" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="PID" Binding="{Binding [0]}" />
+                        <DataGridTextColumn Header="STARTED" Binding="{Binding [1]}" />
+                        <DataGridTextColumn Header="%CPU" Binding="{Binding [2]}" />
+                        <DataGridTextColumn Header="TIME" Binding="{Binding [3]}" />
+                        <DataGridTextColumn Header="%MEM" Binding="{Binding [4]}" />
+                        <DataGridTextColumn Header="RSS" Binding="{Binding [5]}" />
+                        <DataGridTextColumn Header="VSZ" Binding="{Binding [6]}" />
+                        <DataGridTextColumn Header="STAT" Binding="{Binding [7]}" />
+                        <DataGridTextColumn Header="PRI" Binding="{Binding [8]}" />
+                        <DataGridTextColumn Header="NI" Binding="{Binding [9]}" />
+                        <DataGridTextColumn Header="USER" Binding="{Binding [10]}" />
+                        <DataGridTextColumn Header="GROUP" Binding="{Binding [11]}" />
+                        <DataGridTextColumn Header="COMMAND" Binding="{Binding [12]}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</local:InfoBase>

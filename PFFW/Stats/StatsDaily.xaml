@@ -1,0 +1,214 @@
+﻿<!--
+Copyright (C) 2017 Soner Tari
+
+This file is part of PFFW.
+
+PFFW is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+PFFW is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<local:StatsBase x:Class="PFFW.StatsDaily"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PFFW"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="500*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <ToolBar>
+                <Label Content="Log file:" />
+                <ComboBox x:Name="cbLogFilePicker" />
+                <Label Content="Date:" />
+                <DatePicker x:Name="datePicker" />
+                <Button x:Name="btnAllMonths" Content="All Months" Click="button_Click"/>
+                <Button x:Name="btnAllDays" Content="All Days" Click="button_Click"/>
+                <Button x:Name="btnDaily" Content="Daily" Click="button_Click"/>
+                <Button x:Name="btnDefaults" Content="Defaults" Click="button_Click"/>
+                <Button x:Name="btnRefresh" Content="Refresh" Click="button_Click" />
+            </ToolBar>
+        </Grid>
+        <Grid Grid.Row="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="250*"/>
+                <RowDefinition Height="250*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250*"/>
+                <ColumnDefinition Width="250*"/>
+            </Grid.ColumnDefinitions>
+            <ScrollViewer Grid.Row="0" Grid.Column="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="230"/>
+                        <RowDefinition Height="4"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label x:Name="totalLabel" Content="All requests" HorizontalAlignment="Left" Grid.Row="0"/>
+                    <Label x:Name="totalTotal" Content="total: 0" HorizontalAlignment="Right" Grid.Row="0"/>
+
+                    <lvc:CartesianChart x:Name="totalRowChart" LegendLocation="None" Grid.Row="1" >
+                        <lvc:CartesianChart.Series>
+                            <lvc:RowSeries Title="Total" Values="{Binding totalRowValues}" Fill="Blue" DataLabels="True" />
+                        </lvc:CartesianChart.Series>
+                        <lvc:CartesianChart.AxisX >
+                            <lvc:Axis Title="Stats"></lvc:Axis>
+                        </lvc:CartesianChart.AxisX>
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Title="Days" Labels="{Binding totalRowLabels}"/>
+                        </lvc:CartesianChart.AxisY>
+                    </lvc:CartesianChart>
+
+                    <lvc:CartesianChart x:Name="totalColumnChart" LegendLocation="None" Grid.Row="1" >
+                        <lvc:CartesianChart.Series>
+                            <lvc:ColumnSeries Title="Total" Values="{Binding totalColumnValues}" Fill="Blue" DataLabels="True" />
+                        </lvc:CartesianChart.Series>
+                        <lvc:CartesianChart.AxisX >
+                            <lvc:Axis Title="Hours" Labels="{Binding totalColumnLabels}"/>
+                        </lvc:CartesianChart.AxisX>
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Title="Stats"/>
+                        </lvc:CartesianChart.AxisY>
+                    </lvc:CartesianChart>
+
+                    <GridSplitter Grid.Row="2" HorizontalAlignment="Stretch" />
+                    <local:TopLists x:Name="totalLists" Grid.Row="3" />
+                </Grid>
+            </ScrollViewer>
+            <ScrollViewer Grid.Row="0" Grid.Column="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="230"/>
+                        <RowDefinition Height="4"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label x:Name="passLabel" Content="Allowed requests" HorizontalAlignment="Left" Grid.Row="0"/>
+                    <Label x:Name="passTotal" Content="total: 0" HorizontalAlignment="Right" Grid.Row="0"/>
+
+                    <lvc:CartesianChart x:Name="passRowChart" LegendLocation="None" Grid.Row="1" >
+                        <lvc:CartesianChart.Series>
+                            <lvc:RowSeries Title="Pass" Values="{Binding passRowValues}" Fill="Green" DataLabels="True" />
+                        </lvc:CartesianChart.Series>
+                        <lvc:CartesianChart.AxisX >
+                            <lvc:Axis Title="Stats"></lvc:Axis>
+                        </lvc:CartesianChart.AxisX>
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Title="Days" Labels="{Binding passRowLabels}"/>
+                        </lvc:CartesianChart.AxisY>
+                    </lvc:CartesianChart>
+
+                    <lvc:CartesianChart x:Name="passColumnChart" LegendLocation="None" Grid.Row="1" >
+                        <lvc:CartesianChart.Series>
+                            <lvc:ColumnSeries Title="Pass" Values="{Binding passColumnValues}" Fill="Green" DataLabels="True" />
+                        </lvc:CartesianChart.Series>
+                        <lvc:CartesianChart.AxisX >
+                            <lvc:Axis Title="Hours" Labels="{Binding passColumnLabels}"/>
+                        </lvc:CartesianChart.AxisX>
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Title="Stats"/>
+                        </lvc:CartesianChart.AxisY>
+                    </lvc:CartesianChart>
+
+                    <GridSplitter Grid.Row="2" HorizontalAlignment="Stretch" />
+                    <local:TopLists x:Name="passLists" Grid.Row="3" />
+                </Grid>
+            </ScrollViewer>
+            <ScrollViewer Grid.Row="1" Grid.Column="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="230"/>
+                        <RowDefinition Height="4"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label x:Name="blockLabel" Content="Blocked requests" HorizontalAlignment="Left" Grid.Row="0"/>
+                    <Label x:Name="blockTotal" Content="total: 0" HorizontalAlignment="Right" Grid.Row="0"/>
+
+                    <lvc:CartesianChart x:Name="blockRowChart" LegendLocation="None" Grid.Row="1" >
+                        <lvc:CartesianChart.Series>
+                            <lvc:RowSeries Title="Block" Values="{Binding blockRowValues}" Fill="Red" DataLabels="True" />
+                        </lvc:CartesianChart.Series>
+                        <lvc:CartesianChart.AxisX >
+                            <lvc:Axis Title="Stats"></lvc:Axis>
+                        </lvc:CartesianChart.AxisX>
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Title="Days" Labels="{Binding blockRowLabels}"/>
+                        </lvc:CartesianChart.AxisY>
+                    </lvc:CartesianChart>
+
+                    <lvc:CartesianChart x:Name="blockColumnChart" LegendLocation="None" Grid.Row="1" >
+                        <lvc:CartesianChart.Series>
+                            <lvc:ColumnSeries Title="Block" Values="{Binding blockColumnValues}" Fill="Red" DataLabels="True" />
+                        </lvc:CartesianChart.Series>
+                        <lvc:CartesianChart.AxisX >
+                            <lvc:Axis Title="Hours" Labels="{Binding blockColumnLabels}"/>
+                        </lvc:CartesianChart.AxisX>
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Title="Stats"/>
+                        </lvc:CartesianChart.AxisY>
+                    </lvc:CartesianChart>
+
+                    <GridSplitter Grid.Row="2" HorizontalAlignment="Stretch" />
+                    <local:TopLists x:Name="blockLists" Grid.Row="3" />
+                </Grid>
+            </ScrollViewer>
+            <ScrollViewer Grid.Row="1" Grid.Column="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="230"/>
+                        <RowDefinition Height="4"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label x:Name="matchLabel" Content="Matched requests" HorizontalAlignment="Left" Grid.Row="0"/>
+                    <Label x:Name="matchTotal" Content="total: 0" HorizontalAlignment="Right" Grid.Row="0"/>
+
+                    <lvc:CartesianChart x:Name="matchRowChart" LegendLocation="None" Grid.Row="1" >
+                        <lvc:CartesianChart.Series>
+                            <lvc:RowSeries Title="Match" Values="{Binding matchRowValues}" Fill="Yellow" DataLabels="True" />
+                        </lvc:CartesianChart.Series>
+                        <lvc:CartesianChart.AxisX >
+                            <lvc:Axis Title="Stats"></lvc:Axis>
+                        </lvc:CartesianChart.AxisX>
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Title="Days" Labels="{Binding matchRowLabels}"/>
+                        </lvc:CartesianChart.AxisY>
+                    </lvc:CartesianChart>
+
+                    <lvc:CartesianChart x:Name="matchColumnChart" LegendLocation="None" Grid.Row="1" >
+                        <lvc:CartesianChart.Series>
+                            <lvc:ColumnSeries Title="Match" Values="{Binding matchColumnValues}" Fill="Yellow" DataLabels="True" />
+                        </lvc:CartesianChart.Series>
+                        <lvc:CartesianChart.AxisX >
+                            <lvc:Axis Title="Hours" Labels="{Binding matchColumnLabels}"/>
+                        </lvc:CartesianChart.AxisX>
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Title="Stats"/>
+                        </lvc:CartesianChart.AxisY>
+                    </lvc:CartesianChart>
+
+                    <GridSplitter Grid.Row="2" HorizontalAlignment="Stretch" />
+                    <local:TopLists x:Name="matchLists" Grid.Row="3" />
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</local:StatsBase>

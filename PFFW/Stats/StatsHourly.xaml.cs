@@ -176,8 +176,8 @@ namespace PFFW
             if (datePicker.SelectedDate != null)
             {
                 month = datePicker.SelectedDate.Value.Month.ToString().PadLeft(2, '0');
-                day = datePicker.SelectedDate.Value.Day.ToString();
-                hour = cbHourPicker.Text;
+                day = datePicker.SelectedDate.Value.Day.ToString().PadLeft(2, '0');
+                hour = cbHourPicker.Text.PadLeft(2, '0');
             }
         }
 

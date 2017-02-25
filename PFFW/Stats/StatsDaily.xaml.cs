@@ -200,7 +200,7 @@ namespace PFFW
             if (datePicker.SelectedDate != null)
             {
                 month = datePicker.SelectedDate.Value.Month.ToString().PadLeft(2, '0');
-                day = datePicker.SelectedDate.Value.Day.ToString();
+                day = datePicker.SelectedDate.Value.Day.ToString().PadLeft(2, '0');
             }
         }
 

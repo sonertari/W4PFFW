@@ -74,7 +74,7 @@ namespace PFFW
         override protected void updateView()
         {
             var jsonArr = JsonConvert.DeserializeObject<JArray>(mIfsInfo);
-            ifsDataGrid.ItemsSource = jsonToStringArray(jsonArr, new List<string> { "name", "states", "rules",
+            ifsDataGrid.ItemsSource = Utils.jsonToStringArray(jsonArr, new List<string> { "name", "states", "rules",
                 "in4PassPackets", "in4PassBytes", "in4BlockPackets", "in4BlockBytes",
                 "out4PassPackets", "out4PassBytes", "out4BlockPackets", "out4BlockBytes",
                 "in6PassPackets", "in6PassBytes", "in6BlockPackets", "in6BlockBytes",

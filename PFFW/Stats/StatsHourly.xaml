@@ -34,7 +34,7 @@ along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
         <Grid Grid.Row="0">
             <ToolBar>
                 <Label Content="Log file:" />
-                <ComboBox x:Name="cbLogFilePicker" />
+                <local:LogFilePicker x:Name="logFilePicker" />
                 <Label Content="Date:" />
                 <DatePicker x:Name="datePicker" />
                 <Label Content="Hour:" />

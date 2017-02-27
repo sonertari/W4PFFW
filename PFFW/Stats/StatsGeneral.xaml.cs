@@ -84,6 +84,7 @@ namespace PFFW
             (cache as StatsGeneralCache).jsonGeneralStats = jsonGeneralStats;
 
             base.SaveState();
+            logFilePicker.SaveState(cache);
 
             Main.self.cache["StatsGeneral"] = cache;
         }
@@ -99,12 +100,12 @@ namespace PFFW
                 jsonGeneralStats = (cache as StatsGeneralCache).jsonGeneralStats;
 
                 restoreStateBase();
+                logFilePicker.restoreState(cache);
 
                 updateGeneralStatsTable();
                 updateRequestsByDateTable();
                 updateGeneralStats();
 
-                updateLogFilePicker();
                 return true;
             }
             return false;
@@ -129,54 +130,29 @@ namespace PFFW
 
         override protected void refresh()
         {
-            getSelectedLogFile();
-
             fetchStats();
 
-            updateLogFileLists();
-            updateLogFilePicker();
-            // ATTENTION: Log file may change after the log file list is updated
-            getSelectedLogFile();
+            logFilePicker.refresh();
 
             updateStats();
         }
 
-        // XXX: Code reuse.
-        private void updateLogFilePicker()
-        {
-            // TODO: Make this work?
-            //cbLogFilePicker.ItemsSource = logFileOpts;
-            cbLogFilePicker.Items.Clear();
-            logFileOpts.ForEach(item => cbLogFilePicker.Items.Add(item));
-            cbLogFilePicker.Text = selectedLogFileOpt;
-        }
-
         override protected void fetch()
         {
-            logFile = Main.controller.execute("pf", "SelectLogFile", logFile).output;
+            var logfile = logFilePicker.selectLogFile();
 
             // Whether to collect hourly stats too
             var collect = isDailyChart() ? "" : "COLLECT";
 
-            var strStats = Main.controller.execute("pf", "GetAllStats", logFile, collect).output;
+            var strStats = Main.controller.execute("pf", "GetAllStats", logfile, collect).output;
             var jsonAllStats = JsonConvert.DeserializeObject<JObject>(strStats);
             jsonBriefStats = JsonConvert.DeserializeObject<JObject>(jsonAllStats["briefstats"].ToString()) as JObject;
             jsonStats = JsonConvert.DeserializeObject<JObject>(jsonAllStats["stats"].ToString()) as JObject;
 
-            var strGeneralStats = Main.controller.execute("pf", "GetProcStatLines", logFile).output;
+            var strGeneralStats = Main.controller.execute("pf", "GetProcStatLines", logfile).output;
             jsonGeneralStats = JsonConvert.DeserializeObject<JObject>(strGeneralStats);
 
-            var strLogFileList = Main.controller.execute("pf", "GetLogFilesList").output;
-            jsonLogFileList = JsonConvert.DeserializeObject<JObject>(strLogFileList);
-        }
-
-        void getSelectedLogFile()
-        {
-            if (logFileOpts2Files.ContainsKey(cbLogFilePicker.Text))
-            {
-                selectedLogFileOpt = cbLogFilePicker.Text;
-                logFile = logFileOpts2Files[selectedLogFileOpt];
-            }
+            logFilePicker.fetch();
         }
 
         void setChartType(string type)

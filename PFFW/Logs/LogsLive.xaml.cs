@@ -28,6 +28,8 @@ namespace PFFW
 {
     public partial class LogsLive : LogsBase
     {
+        private string logFile = "";
+
         Timer timer;
         int refreshTimeout = 10;
         bool timerEventRunning = false;
@@ -75,6 +77,7 @@ namespace PFFW
             cache = new LogsBaseCache();
 
             base.SaveState();
+            cache.logFile = logFile;
 
             Main.self.cache["LogsLive"] = cache;
         }
@@ -86,6 +89,7 @@ namespace PFFW
                 cache = Main.self.cache["LogsLive"] as LogsBaseCache;
 
                 base.restoreState();
+                logFile = cache.logFile;
 
                 updateSelections();
                 updateLogsView();
@@ -146,7 +150,7 @@ namespace PFFW
             }
 
             var jsonArr = JsonConvert.DeserializeObject<JArray>(mLogs);
-            logsDataGrid.ItemsSource = jsonToStringArray(jsonArr, new List<string> { "Rule", "Date", "Time", "Act", "Dir", "If", "SrcIP", "SPort", "DstIP", "DPort", "Type", "Log" }, true, lineCount);
+            logsDataGrid.ItemsSource = Utils.jsonToStringArray(jsonArr, new List<string> { "Rule", "Date", "Time", "Act", "Dir", "If", "SrcIP", "SPort", "DstIP", "DPort", "Type", "Log" }, true, lineCount);
         }
 
         private void updateSelections()

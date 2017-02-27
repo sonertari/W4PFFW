@@ -21,7 +21,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Windows;
 
 namespace PFFW
@@ -33,13 +32,6 @@ namespace PFFW
         private object mButton;
         private bool mButtonPressed = false;
 
-        public string selectedLogFileOpt = "";
-
-        protected Dictionary<string, string> logFileOpts2Files = new Dictionary<string, string>();
-        protected List<string> logFileOpts = new List<string>();
-
-        protected JObject jsonLogFileList = new JObject();
-
         override protected void init()
         {
             InitializeComponent();
@@ -50,13 +42,10 @@ namespace PFFW
             cache = new LogsArchivesCache();
 
             base.SaveState();
+            logFilePicker.SaveState(cache);
 
             (cache as LogsArchivesCache).mStartLine = mStartLine;
             (cache as LogsArchivesCache).mHeadStart = mHeadStart;
-
-            cache.selectedLogFileOpt = selectedLogFileOpt;
-            cache.logFileOpts = logFileOpts;
-            cache.logFileOpts2Files = logFileOpts2Files;
 
             Main.self.cache["LogsArchives"] = cache;
         }
@@ -68,16 +57,12 @@ namespace PFFW
                 cache = Main.self.cache["LogsArchives"] as LogsArchivesCache;
 
                 base.restoreState();
+                logFilePicker.restoreState(cache);
 
                 mStartLine = (cache as LogsArchivesCache).mStartLine;
                 mHeadStart = (cache as LogsArchivesCache).mHeadStart;
 
-                selectedLogFileOpt = cache.selectedLogFileOpt;
-                logFileOpts = cache.logFileOpts;
-                logFileOpts2Files = cache.logFileOpts2Files;
-
                 updateSelections();
-                updateLogFilePicker();
                 updateLogsView();
 
                 return true;
@@ -87,28 +72,17 @@ namespace PFFW
 
         override protected void fetch()
         {
-            getSelectedLogFile();
             getSelections();
 
-            logFile = Main.controller.execute("pf", "SelectLogFile", logFile).output;
+            var logfile = logFilePicker.selectLogFile();
 
-            mLogSize = int.Parse(Main.controller.execute("pf", "GetFileLineCount", logFile, mRegex).output);
+            mLogSize = int.Parse(Main.controller.execute("pf", "GetFileLineCount", logfile, mRegex).output);
 
             computeNavigationVars();
 
-            mLogs = Main.controller.execute("pf", "GetLogs", logFile, mHeadStart, mLinesPerPage, mRegex).output;
+            mLogs = Main.controller.execute("pf", "GetLogs", logfile, mHeadStart, mLinesPerPage, mRegex).output;
 
-            var strLogFileList = Main.controller.execute("pf", "GetLogFilesList").output;
-            jsonLogFileList = JsonConvert.DeserializeObject<JObject>(strLogFileList);
-        }
-
-        void getSelectedLogFile()
-        {
-            if (logFileOpts2Files.ContainsKey(cbLogFilePicker.Text))
-            {
-                selectedLogFileOpt = cbLogFilePicker.Text;
-                logFile = logFileOpts2Files[selectedLogFileOpt];
-            }
+            logFilePicker.fetch();
         }
 
         private void getSelections()
@@ -183,15 +157,14 @@ namespace PFFW
         override protected void updateView()
         {
             updateSelections();
-            updateLogFileLists();
-            updateLogFilePicker();
+            logFilePicker.refresh();
             updateLogsView();
         }
 
         protected void updateLogsView()
         {
             var jsonArr = JsonConvert.DeserializeObject<JArray>(mLogs);
-            logsDataGrid.ItemsSource = jsonToStringArray(jsonArr, new List<string> { "Rule", "Date", "Time", "Act", "Dir", "If", "SrcIP", "SPort", "DstIP", "DPort", "Type", "Log" }, true, mStartLine);
+            logsDataGrid.ItemsSource = Utils.jsonToStringArray(jsonArr, new List<string> { "Rule", "Date", "Time", "Act", "Dir", "If", "SrcIP", "SPort", "DstIP", "DPort", "Type", "Log" }, true, mStartLine);
         }
 
         private void updateSelections()
@@ -202,55 +175,7 @@ namespace PFFW
             linesPerPage.Text = mLinesPerPage.ToString();
             regex.Text = mRegex;
 
-            selected.Content = "Selected: " + selectedLogFileOpt;
-        }
-
-        // XXX: Code reuse.
-        public void updateLogFileLists()
-        {
-            logFileOpts.Clear();
-            logFileOpts2Files.Clear();
-
-            // Clone to create a local copy, because we modify this local copy below
-            var logfile = logFile;
-
-            var it = jsonLogFileList.GetEnumerator();
-            while (it.MoveNext())
-            {
-                var file = it.Current.Key;
-
-                var optFileBasename = Path.GetFileNameWithoutExtension(file);
-
-                var opt = jsonLogFileList[file] + " - " + optFileBasename;
-
-                logFileOpts.Add(opt);
-                logFileOpts2Files[opt] = file;
-
-                // XXX: Need the inverse of mLogFileOpts2Files list to get selectedLogFileOpt easily
-                // ATTENTION: But the keys of the inverse list are not suitable, because mLogFile may refer to a tmp file: /var/tmp/pffw/logs/Pf/pflog
-                if (Path.GetExtension(file).Equals(".gz"))
-                {
-                    // logFile does not have .gz extension, because it points to the file decompressed by the controller
-                    // Update this local copy for comparison and to print it below
-                    var logFileBasename = Path.GetFileName(file);
-                    logfile += ((logFileBasename + ".gz").Equals(optFileBasename)) ? ".gz" : "";
-                }
-
-                if (optFileBasename.Equals(Path.GetFileName(logfile)))
-                {
-                    selectedLogFileOpt = opt;
-                }
-            }
-        }
-
-        // XXX: Code reuse.
-        private void updateLogFilePicker()
-        {
-            // TODO: Make this work?
-            //cbLogFilePicker.ItemsSource = logFileOpts;
-            cbLogFilePicker.Items.Clear();
-            logFileOpts.ForEach(item => cbLogFilePicker.Items.Add(item));
-            cbLogFilePicker.Text = selectedLogFileOpt;
+            selected.Content = "Selected: " + logFilePicker.getSelectedLogFileOpt();
         }
     }
 

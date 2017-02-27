@@ -130,6 +130,7 @@
     <Compile Include="Info\InfoPf.xaml.cs">
       <DependentUpon>InfoPf.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Lib\Utils.cs" />
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -140,6 +141,7 @@
     <Compile Include="Logs\LogsArchives.xaml.cs">
       <DependentUpon>LogsArchives.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Lib\LogFilePicker.cs" />
     <Compile Include="Stats\StatsTest.xaml.cs">
       <DependentUpon>StatsTest.xaml</DependentUpon>
     </Compile>

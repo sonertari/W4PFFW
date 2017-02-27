@@ -71,7 +71,7 @@ namespace PFFW
         override protected void updateView()
         {
             var jsonArr = JsonConvert.DeserializeObject<JArray>(mRulesInfo);
-            rulesDataGrid.ItemsSource = jsonToStringArray(jsonArr, new List<string> { "number", "evaluations", "packets", "bytes", "states", "stateCreations", "rule", "inserted" }, false);
+            rulesDataGrid.ItemsSource = Utils.jsonToStringArray(jsonArr, new List<string> { "number", "evaluations", "packets", "bytes", "states", "stateCreations", "rule", "inserted" }, false);
         }
     }
 

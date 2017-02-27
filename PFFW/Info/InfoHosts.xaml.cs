@@ -115,10 +115,10 @@ namespace PFFW
             namedDataGrid.ItemsSource = JsonConvert.DeserializeObject<string[][]>(jsonArr.ToString());
 
             jsonArr = JsonConvert.DeserializeObject<JArray>(mArpTableInfo);
-            arpTableDataGrid.ItemsSource = jsonToStringArray(jsonArr, new List<string> { "IP", "MAC", "Interface", "Expire" });
+            arpTableDataGrid.ItemsSource = Utils.jsonToStringArray(jsonArr, new List<string> { "IP", "MAC", "Interface", "Expire" });
 
             jsonArr = JsonConvert.DeserializeObject<JArray>(mLeasesInfo);
-            leasesDataGrid.ItemsSource = jsonToStringArray(jsonArr, new List<string> { "IP", "Start", "End", "MAC", "Host", "Status" });
+            leasesDataGrid.ItemsSource = Utils.jsonToStringArray(jsonArr, new List<string> { "IP", "Start", "End", "MAC", "Host", "Status" });
         }
     }
 

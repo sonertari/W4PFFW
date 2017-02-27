@@ -40,7 +40,7 @@ along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
                 </Grid.ColumnDefinitions>
                 <ToolBar Grid.Column="0">
                     <Label Content="Log file:" />
-                    <ComboBox x:Name="cbLogFilePicker" />
+                    <local:LogFilePicker x:Name="logFilePicker" />
                     <Label Content="Line:" />
                     <TextBox x:Name="startLine" />
                     <Label x:Name="stateSize" Content="/0" />

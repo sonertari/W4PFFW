@@ -28,6 +28,8 @@ namespace PFFW
 {
     public partial class StatsLive : StatsHourlyBase
     {
+        private string logFile = "";
+
         public string minute = "00";
 
         Timer timer;
@@ -110,6 +112,7 @@ namespace PFFW
             (cache as StatsLiveCache).minute = minute;
 
             base.SaveState();
+            cache.logFile = logFile;
 
             Main.self.cache["StatsLive"] = cache;
         }
@@ -124,6 +127,7 @@ namespace PFFW
                 minute = (cache as StatsLiveCache).minute;
 
                 restoreStateBase();
+                logFile = cache.logFile;
 
                 updateDateTimeText();
                 return true;
@@ -142,7 +146,7 @@ namespace PFFW
 
         void updateDateTimeText()
         {
-            dateLabel.Content = "Date: " + monthNames[month] + " " + day + ", " + hour + ":" + minute;
+            dateLabel.Content = "Date: " + Utils.monthNames[month] + " " + day + ", " + hour + ":" + minute;
         }
 
         override protected void fetch()

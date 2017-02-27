@@ -17,9 +17,7 @@
  * along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -36,8 +34,6 @@ namespace PFFW
         protected int mLinesPerPage, mLogSize = 0;
         protected string mRegex = "";
 
-        protected string logFile = "";
-
         public LogsBase()
         {
             init();
@@ -52,8 +48,6 @@ namespace PFFW
 
         virtual public void SaveState()
         {
-            cache.logFile = logFile;
-
             (cache as LogsBaseCache).mLogs = mLogs;
             (cache as LogsBaseCache).mLinesPerPage = mLinesPerPage;
             (cache as LogsBaseCache).mLogSize = mLogSize;
@@ -62,8 +56,6 @@ namespace PFFW
 
         virtual protected bool restoreState()
         {
-            logFile = cache.logFile;
-
             mLogs = (cache as LogsBaseCache).mLogs;
             mLinesPerPage = (cache as LogsBaseCache).mLinesPerPage;
             mLogSize = (cache as LogsBaseCache).mLogSize;
@@ -119,31 +111,6 @@ namespace PFFW
                     e.Row.Background = new SolidColorBrush(Colors.Yellow);
                 }
             }
-        }
-
-        // XXX: Code reuse?
-        protected string[][] jsonToStringArray(JArray jsonArr, List<string> keys, bool addNumber = true, int offset = 0)
-        {
-            var a = new List<string[]>();
-            foreach (var d in jsonArr.ToObject<List<Dictionary<string, string>>>())
-            {
-                var l = new List<string>();
-
-                if (addNumber)
-                {
-                    l.Add((a.Count + offset + 1).ToString());
-                }
-
-                foreach (var k in keys)
-                {
-                    if (d.ContainsKey(k))
-                    {
-                        l.Add(d[k]);
-                    }
-                }
-                a.Add(l.ToArray());
-            }
-            return a.ToArray();
         }
     }
 

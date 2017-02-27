@@ -171,7 +171,7 @@ namespace PFFW
 
     public class Cache
     {
-        // TODO: Not all pages need these log vars.
+        // XXX: Not all pages need these log vars.
         public string logFile = "";
         public string lastLogFile = "";
         public string selectedLogFileOpt = "";

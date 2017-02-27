@@ -23,7 +23,6 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -34,13 +33,6 @@ namespace PFFW
 {
     public abstract class StatsBase : UserControl
     {
-        public string logFile = "";
-        public string lastLogFile = "";
-        public string selectedLogFileOpt = "";
-
-        protected Dictionary<string, string> logFileOpts2Files = new Dictionary<string, string>();
-        protected List<string> logFileOpts = new List<string>();
-
         public string month = "01";
         public string day = "01";
 
@@ -75,7 +67,6 @@ namespace PFFW
         }
 
         protected JObject jsonStats = new JObject();
-        protected JObject jsonLogFileList = new JObject();
 
         protected Dictionary<string, Dictionary<string, ListDef>> listDefs = new Dictionary<string, Dictionary<string, ListDef>>();
 
@@ -92,24 +83,6 @@ namespace PFFW
                 counts = c;
             }
         };
-
-        // ATTENTION: Do not translate month names, they are used to match the strings in log files in English
-        protected Dictionary<string, string> monthNames = new Dictionary<string, string> {
-            { "01", "Jan" },
-            { "02", "Feb" },
-            { "03", "Mar" },
-            { "04", "Apr" },
-            { "05", "May" },
-            { "06", "Jun" },
-            { "07", "Jul" },
-            { "08", "Aug" },
-            { "09", "Sep" },
-            { "10", "Oct" },
-            { "11", "Nov" },
-            { "12", "Dec" }
-            };
-
-        protected Dictionary<string, string> monthNumbers;
 
         protected StatsCache cache;
 
@@ -157,8 +130,6 @@ namespace PFFW
 
         public StatsBase()
         {
-            monthNumbers = monthNames.ToDictionary(pair => pair.Value, pair => pair.Key);
-
             chartValuesLabels = new Dictionary<string, ChartValuesLabels> {
                 { "Total", new ChartValuesLabels(totalRowValues, totalRowLabels, totalColumnValues, totalColumnLabels) },
                 { "Pass", new ChartValuesLabels(passRowValues, passRowLabels, passColumnValues, passColumnLabels) },
@@ -198,24 +169,12 @@ namespace PFFW
 
             cache.charts = chartsCache;
             cache.lists = listsCache;
-
-            cache.logFile = logFile;
-            cache.lastLogFile = lastLogFile;
-            cache.selectedLogFileOpt = selectedLogFileOpt;
-            cache.logFileOpts = logFileOpts;
-            cache.logFileOpts2Files = logFileOpts2Files;
         }
 
         protected abstract bool restoreState();
 
         protected void restoreStateBase()
         {
-            logFile = cache.logFile;
-            lastLogFile = cache.lastLogFile;
-            selectedLogFileOpt = cache.selectedLogFileOpt;
-            logFileOpts = cache.logFileOpts;
-            logFileOpts2Files = cache.logFileOpts2Files;
-
             month = cache.month;
             day = cache.day;
 
@@ -231,49 +190,6 @@ namespace PFFW
                     listDefs[title][key].data = cache.lists[title][key].data;
                 }
                 updateLists(title);
-            }
-        }
-
-        protected bool isLogFileChanged()
-        {
-            return !logFile.Equals(lastLogFile);
-        }
-
-        // TODO: This is the exact same replica of the method use by LogArchives.
-        public void updateLogFileLists()
-        {
-            logFileOpts.Clear();
-            logFileOpts2Files.Clear();
-
-            // Clone to create a local copy, because we modify this local copy below
-            var logfile = logFile;
-
-            var it = jsonLogFileList.GetEnumerator();
-            while (it.MoveNext())
-            {
-                var file = it.Current.Key;
-
-                var optFileBasename = Path.GetFileNameWithoutExtension(file);
-
-                var opt = jsonLogFileList[file] + " - " + optFileBasename;
-
-                logFileOpts.Add(opt);
-                logFileOpts2Files[opt] = file;
-
-                // XXX: Need the inverse of mLogFileOpts2Files list to get selectedLogFileOpt easily
-                // ATTENTION: But the keys of the inverse list are not suitable, because mLogFile may refer to a tmp file: /var/tmp/pffw/logs/Pf/pflog
-                if (Path.GetExtension(file).Equals(".gz"))
-                {
-                    // logFile does not have .gz extension, because it points to the file decompressed by the controller
-                    // Update this local copy for comparison and to print it below
-                    var logFileBasename = Path.GetFileName(file);
-                    logfile += ((logFileBasename + ".gz").Equals(optFileBasename)) ? ".gz" : "";
-                }
-
-                if (optFileBasename.Equals(Path.GetFileName(logfile)))
-                {
-                    selectedLogFileOpt = opt;
-                }
             }
         }
 

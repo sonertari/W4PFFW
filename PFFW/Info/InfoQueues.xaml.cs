@@ -71,7 +71,7 @@ namespace PFFW
         override protected void updateView()
         {
             var jsonArr = JsonConvert.DeserializeObject<JArray>(mQueuesInfo);
-            queuesDataGrid.ItemsSource = jsonToStringArray(jsonArr, new List<string> { "name", "pkts", "bytes", "droppedPkts", "droppedBytes", "length" }, false);
+            queuesDataGrid.ItemsSource = Utils.jsonToStringArray(jsonArr, new List<string> { "name", "pkts", "bytes", "droppedPkts", "droppedBytes", "length" }, false);
         }
     }
 

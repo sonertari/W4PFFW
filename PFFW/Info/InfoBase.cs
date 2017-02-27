@@ -17,9 +17,7 @@
  * along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
@@ -120,29 +118,5 @@ namespace PFFW
         /// Push the data to the view.
         /// </summary>
         protected abstract void updateView();
-
-        protected string[][] jsonToStringArray(JArray jsonArr, List<string> keys, bool addNumber = true)
-        {
-            var a = new List<string[]>();
-            foreach (var d in jsonArr.ToObject<List<Dictionary<string, string>>>())
-            {
-                var l = new List<string>();
-
-                if (addNumber)
-                {
-                    l.Add((a.Count + 1).ToString());
-                }
-
-                foreach (var k in keys)
-                {
-                    if (d.ContainsKey(k))
-                    {
-                        l.Add(d[k]);
-                    }
-                }
-                a.Add(l.ToArray());
-            }
-            return a.ToArray();
-        }
     }
 }

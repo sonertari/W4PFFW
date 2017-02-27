@@ -51,7 +51,7 @@ namespace PFFW
 
         protected string formatDate()
         {
-            return monthNames[month] + " " + day.PadLeft(2, '0');
+            return Utils.monthNames[month] + " " + day.PadLeft(2, '0');
         }
 
         override protected bool isDailyChart()

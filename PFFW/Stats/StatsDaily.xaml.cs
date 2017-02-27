@@ -20,7 +20,6 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
-using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -74,6 +73,7 @@ namespace PFFW
             cache.isDailyChart = isDailyChart();
 
             base.SaveState();
+            logFilePicker.SaveState(cache);
 
             Main.self.cache["StatsDaily"] = cache;
         }
@@ -89,8 +89,8 @@ namespace PFFW
                 btnDaily.Content = cache.isDailyChart ? "Daily" : "Hourly";
 
                 restoreStateBase();
+                logFilePicker.restoreState(cache);
 
-                updateLogFilePicker();
                 updateDateTimeText();
                 return true;
             }
@@ -130,47 +130,19 @@ namespace PFFW
 
         override protected void refresh()
         {
-            getSelectedLogFile();
             getSelectedDateTime();
-
             fetchStats();
-
-            updateLogFileLists();
-            updateLogFilePicker();
-            // ATTENTION: Log file may change after the log file list is updated
-            getSelectedLogFile();
-
+            logFilePicker.refresh();
             updateStats();
-        }
-
-        // XXX: Code reuse.
-        private void updateLogFilePicker()
-        {
-            // TODO: Make this work?
-            //cbLogFilePicker.ItemsSource = logFileOpts;
-            cbLogFilePicker.Items.Clear();
-            logFileOpts.ForEach(item => cbLogFilePicker.Items.Add(item));
-            cbLogFilePicker.Text = selectedLogFileOpt;
         }
 
         override protected void fetch()
         {
-            logFile = Main.controller.execute("pf", "SelectLogFile", logFile).output;
+            var logfile = logFilePicker.selectLogFile();
 
-            if (isLogFileChanged())
-            {
-                var strDate = Main.controller.execute("pf", "GetLogStartDate", logFile).output;
-
-                Regex r = new Regex(@"^(\w+)\s+(\d+)\s+(\d+):\d+:\d+$");
-                Match match = r.Match(strDate);
-                if (match.Success)
-                {
-                    month = monthNumbers[match.Groups[1].ToString()];
-                    day = match.Groups[2].ToString();
-                }
-
-                lastLogFile = logFile;
-            }
+            var tuple = logFilePicker.getLogStartDate(month, day);
+            month = tuple.Item1;
+            day = tuple.Item2;
 
             var m = isAllMonths() ? "" : month;
             var d = isAllDays() ? "" : day;
@@ -178,21 +150,10 @@ namespace PFFW
             var jsonDate = JsonConvert.SerializeObject(new Dictionary<string, string> { { "Month", m }, { "Day", d } });
             var collect = isDailyChart() ? "" : "COLLECT";
 
-            var strStats = Main.controller.execute("pf", "GetStats", logFile, jsonDate, collect).output;
-
+            var strStats = Main.controller.execute("pf", "GetStats", logfile, jsonDate, collect).output;
             jsonStats = JsonConvert.DeserializeObject<JObject>(strStats);
 
-            var strLogFileList = Main.controller.execute("pf", "GetLogFilesList").output;
-            jsonLogFileList = JsonConvert.DeserializeObject<JObject>(strLogFileList);
-        }
-
-        void getSelectedLogFile()
-        {
-            if (logFileOpts2Files.ContainsKey(cbLogFilePicker.Text))
-            {
-                selectedLogFileOpt = cbLogFilePicker.Text;
-                logFile = logFileOpts2Files[selectedLogFileOpt];
-            }
+            logFilePicker.fetch();
         }
 
         void getSelectedDateTime()

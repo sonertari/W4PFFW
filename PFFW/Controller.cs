@@ -108,7 +108,7 @@ namespace PFFW
 
         public CommandOutput execute(string model, string cmd, params object[] args)
         {
-            var command = "/usr/bin/doas /var/www/htdocs/pffw/Controller/pffwc.php en_En " + model + " " + cmd;
+            var command = "sh ctlr en_En " + model + " " + cmd;
             foreach (object a in args)
             {
                 command += " '" + a.ToString() + "'";

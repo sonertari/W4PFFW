@@ -32,7 +32,10 @@ namespace PFFW
         public string host;
         private int port;
 
-        public string hostname;
+        public string previousHost;
+
+        // Currently unused, we might use it to trust the server cert in the future
+        private string hostname;
 
         public class CommandOutput
         {

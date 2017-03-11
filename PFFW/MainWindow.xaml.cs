@@ -115,6 +115,12 @@ namespace PFFW
 
         public void loggedIn()
         {
+            if (!controller.host.Equals(controller.previousHost))
+            {
+                // Reset the cache if the host changes
+                cache = new Dictionary<string, Cache>();
+                controller.previousHost = controller.host;
+            }
             menu.Visibility = Visibility.Visible;
             showPage(typeof(InfoPf));
         }

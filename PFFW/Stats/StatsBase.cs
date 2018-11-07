@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2017 Soner Tari
+ * Copyright (C) 2017-2018 Soner Tari
  *
  * This file is part of PFFW.
  *
@@ -105,8 +105,6 @@ namespace PFFW
         public List<string> matchRowLabels { get; set; } = new List<string>();
         public ChartValues<double> matchColumnValues { get; set; } = new ChartValues<double>();
         public List<string> matchColumnLabels { get; set; } = new List<string>();
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         protected class ChartValuesLabels
         {

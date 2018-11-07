@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2017 Soner Tari
+ * Copyright (C) 2017-2018 Soner Tari
  *
  * This file is part of PFFW.
  *
@@ -38,7 +38,7 @@ namespace PFFW
 
         protected Dictionary<string, Image> images;
         protected Dictionary<string, BitmapImage> bitmaps;
-        
+
         Timer timer;
         protected int refreshTimeout = 10;
         bool timerEventRunning = false;
@@ -149,13 +149,35 @@ namespace PFFW
 
             foreach (var key in graphs.Keys)
             {
-                var hash = graphs[key];
-                var bmp = new BitmapImage();
+                var file = graphs[key];
 
+                System.IO.MemoryStream stream = null;
+                try
+                {
+                    // TODO: Check why output has escaped double quotes around it
+                    var base64Graph = Main.controller.execute("symon", "GetGraph", file).output.Trim('\\').Trim('"');
+                    stream = new System.IO.MemoryStream(Convert.FromBase64String(base64Graph));
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Exception: " + e.Message);
+                }
+
+                var bmp = new BitmapImage();
                 bmp.BeginInit();
-                bmp.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
                 bmp.CacheOption = BitmapCacheOption.OnLoad;
-                bmp.UriSource = new Uri(@"https://" + Main.controller.host + @"/symon/graph.php?" + hash, UriKind.Absolute);
+                if (stream != null)
+                {
+                    bmp.StreamSource = stream;
+                }
+                else
+                {
+                    // Try http if ssh fails
+                    //1540861800_404e00f4044d07242a77f802e457f774
+                    var hash = file.Split('_')[1];
+                    bmp.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
+                    bmp.UriSource = new Uri(@"http://" + Main.controller.host + @"/symon/graph.php?" + hash, UriKind.Absolute);
+                }
                 bmp.EndInit();
 
                 bitmaps[key] = bmp;

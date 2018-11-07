@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2017 Soner Tari
+ * Copyright (C) 2017-2018 Soner Tari
  *
  * This file is part of PFFW.
  *
@@ -110,6 +110,7 @@ namespace PFFW
             {
                 // ATTENTION: Never allow too large numbers here.
                 // BUG: tail(1) on OpenBSD 5.9 amd64 gets stuck with: echo soner | /usr/bin/tail -99999999
+                // Fixed on OpenBSD 6.4
                 mLinesPerPage = Math.Min(999, int.Parse(linesPerPage.Text));
             }
             catch

@@ -1,5 +1,5 @@
 ﻿<!--
-Copyright (C) 2017 Soner Tari
+Copyright (C) 2017-2018 Soner Tari
 
 This file is part of PFFW.
 
@@ -25,7 +25,7 @@ along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
         xmlns:local="clr-namespace:PFFW"
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
-        Title="PFFW" WindowStartupLocation="CenterScreen" Icon="{DynamicResource ComixWallLogo}" d:DesignWidth="400" d:DesignHeight="300">
+        Title="PFFW 6.4" WindowStartupLocation="CenterScreen" Icon="{DynamicResource ComixWallLogo}" d:DesignWidth="400" d:DesignHeight="300">
     <Window.Resources>
         <BitmapImage x:Key="ComixWallLogo" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="comixwall.ico"/>
     </Window.Resources>

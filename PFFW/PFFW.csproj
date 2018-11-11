@@ -123,6 +123,9 @@
       <DependentUpon>GraphsIfs.xaml</DependentUpon>
     </Compile>
     <Compile Include="Graphs\GraphsBase.cs" />
+    <Compile Include="Dashboard.xaml.cs">
+      <DependentUpon>Dashboard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Info\InfoBase.cs" />
     <Compile Include="Info\InfoIfs.xaml.cs">
       <DependentUpon>InfoIfs.xaml</DependentUpon>
@@ -193,6 +196,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Graphs\GraphsIfs.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dashboard.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

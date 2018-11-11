@@ -1,0 +1,279 @@
+﻿<!--
+Copyright (C) 2017-2018 Soner Tari
+
+This file is part of PFFW.
+
+PFFW is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+PFFW is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<local:InfoBase x:Class="PFFW.Dashboard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PFFW"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="600">
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid MaxHeight="150" MaxWidth="1000" MinHeight="100" MinWidth="900" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="25*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Background="Red" Margin="5" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="450*"/>
+                    <RowDefinition Height="2"/>
+                    <RowDefinition Height="150*"/>
+                </Grid.RowDefinitions>
+                <Label x:Name="criticalNumber" Content="0" Foreground="White" FontSize="60" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
+                <Label x:Name="criticalLine" Background="White" Grid.Row="1"/>
+                <Label x:Name="criticalCaption" Content="CRITICAL" Foreground="White" FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2"/>
+            </Grid>
+            <Grid Background="Orange" Margin="5" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="450*"/>
+                    <RowDefinition Height="2"/>
+                    <RowDefinition Height="150*"/>
+                </Grid.RowDefinitions>
+                <Label x:Name="errorNumber" Content="1" Foreground="White" FontSize="60" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
+                <Label x:Name="errorLine" Background="White" Grid.Row="1"/>
+                <Label x:Name="errorCaption" Content="ERROR" Foreground="White" FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2"/>
+            </Grid>
+            <Grid Background="Yellow" Margin="5" Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="450*"/>
+                    <RowDefinition Height="2"/>
+                    <RowDefinition Height="150*"/>
+                </Grid.RowDefinitions>
+                <Label x:Name="warningNumber" Content="15" FontSize="60" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
+                <Label x:Name="warningLine" Background="Black" Grid.Row="1"/>
+                <Label x:Name="warningCaption" Content="WARNING" FontSize="15" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2"/>
+            </Grid>
+        </Grid>
+        <Label x:Name="moduleStatus" Content="Module Status:" Grid.Row="1" FontWeight="Bold" HorizontalAlignment="Left"/>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" MinWidth="200">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Background="WhiteSmoke" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Ellipse x:Name="systemRunningElipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Label x:Name="systemRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
+                        <Ellipse x:Name="systemErrorElipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Label x:Name="systemError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
+                        <Label x:Name="systemTitle" Content="System" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
+                    </Grid>
+                    <Label x:Name="systemStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
+                </Grid>
+                <Grid Grid.Row="1" Background="WhiteSmoke" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Ellipse x:Name="opensshRunningElipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Label x:Name="opensshRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
+                        <Ellipse x:Name="opensshErrorElipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Label x:Name="opensshError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
+                        <Label x:Name="opensshTitle" Content="OpenSSH" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
+                    </Grid>
+                    <Label x:Name="opensshStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
+                </Grid>
+                <Grid Grid.Row="2" Background="WhiteSmoke" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Ellipse x:Name="symuxRunningElipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Label x:Name="symuxRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
+                        <Ellipse x:Name="symuxErrorElipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Label x:Name="symuxError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
+                        <Label x:Name="symuxTitle" Content="Symux" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
+                    </Grid>
+                    <Label x:Name="symuxStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="1" MinWidth="200">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Background="WhiteSmoke" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Ellipse x:Name="pfRunningElipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Label x:Name="pfRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
+                        <Ellipse x:Name="pfErrorElipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Label x:Name="pfError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
+                        <Label x:Name="pfTitle" Content="Packet Filter" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
+                    </Grid>
+                    <Label x:Name="pfStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
+                </Grid>
+                <Grid Grid.Row="1" Background="WhiteSmoke" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Ellipse x:Name="ftpproxyRunningElipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Label x:Name="ftpproxyRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
+                        <Ellipse x:Name="ftpproxyErrorElipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Label x:Name="ftpproxyError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
+                        <Label x:Name="ftpproxyTitle" Content="FTP Proxy" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
+                    </Grid>
+                    <Label x:Name="ftpproxyStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="2" MinWidth="200">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Background="WhiteSmoke" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Ellipse x:Name="dhcpdRunningElipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Label x:Name="dhcpdRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
+                        <Ellipse x:Name="dhcpdErrorElipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Label x:Name="dhcpdError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
+                        <Label x:Name="dhcpdTitle" Content="DHCP Server" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
+                    </Grid>
+                    <Label x:Name="dhcpdStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
+                </Grid>
+                <Grid Grid.Row="1" Background="WhiteSmoke" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Ellipse x:Name="httpdRunningElipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Label x:Name="httpdRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
+                        <Ellipse x:Name="httpdErrorElipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Label x:Name="httpdError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
+                        <Label x:Name="httpdTitle" Content="Web Server" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
+                    </Grid>
+                    <Label x:Name="httpdStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="3" MinWidth="200">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Background="WhiteSmoke" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Ellipse x:Name="namedRunningElipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Label x:Name="namedRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
+                        <Ellipse x:Name="namedErrorElipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Label x:Name="namedError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
+                        <Label x:Name="namedTitle" Content="DNS Server" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
+                    </Grid>
+                    <Label x:Name="namedStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
+                </Grid>
+                <Grid Grid.Row="1" Background="WhiteSmoke" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Ellipse x:Name="symonRunningElipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Label x:Name="symonRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
+                        <Ellipse x:Name="symonErrorElipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Label x:Name="symonError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
+                        <Label x:Name="symonTitle" Content="Symon" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
+                    </Grid>
+                    <Label x:Name="symonStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
+                </Grid>
+            </Grid>
+        </Grid>
+        <Label x:Name="copyright" Content="Copyright (C) 2018 Soner Tari. All rights reserved." Grid.Row="3" HorizontalAlignment="Left"/>
+    </Grid>
+</local:InfoBase>

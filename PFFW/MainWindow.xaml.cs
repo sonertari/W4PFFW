@@ -74,6 +74,7 @@ namespace PFFW
             self = this;
 
             pages = new Dictionary<MenuItem, Type>() {
+                {DashboardMenuItem, typeof(Dashboard)},
                 {InfoPfMenuItem, typeof(InfoPf)},
                 //{InfoPfMVVMMenuItem, typeof(InfoPfMVVM)},
                 {InfoSystemMenuItem, typeof(InfoSystem)},
@@ -122,7 +123,7 @@ namespace PFFW
                 controller.previousHost = controller.host;
             }
             menu.Visibility = Visibility.Visible;
-            showPage(typeof(InfoPf));
+            showPage(typeof(Dashboard));
         }
 
         public void logOut()

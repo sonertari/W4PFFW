@@ -22,10 +22,8 @@ along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PFFW"
-        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
-        Title="PFFW 6.4" WindowStartupLocation="CenterScreen" Icon="{DynamicResource ComixWallLogo}" d:DesignWidth="400" d:DesignHeight="300">
+        Title="PFFW 6.4.1" WindowStartupLocation="CenterScreen" Icon="{DynamicResource ComixWallLogo}" d:DesignWidth="400" d:DesignHeight="300">
     <Window.Resources>
         <BitmapImage x:Key="ComixWallLogo" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="comixwall.ico"/>
     </Window.Resources>
@@ -35,6 +33,12 @@ along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
             <RowDefinition Height="500*"/>
         </Grid.RowDefinitions>
         <Menu x:Name="menu" Grid.Row="0" Background="White" >
+            <MenuItem Header="System">
+                <MenuItem x:Name="DashboardMenuItem" Header="Dashboard" Click="MenuItem_Click"/>
+                <Separator/>
+                <MenuItem x:Name="LogOut" Header="Log out" Click="MenuItem_Click"/>
+                <MenuItem x:Name="Exit" Header="Exit" Click="MenuItem_Click"/>
+            </MenuItem>
             <MenuItem Header="Info">
                 <MenuItem x:Name="InfoPfMenuItem" Header="Pf" Click="MenuItem_Click"/>
                 <!--<MenuItem x:Name="InfoPfMVVMMenuItem" Header="Pf MVVM" Click="MenuItem_Click"/>-->
@@ -44,9 +48,6 @@ along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
                 <MenuItem x:Name="InfoRulesMenuItem" Header="Rules" Click="MenuItem_Click"/>
                 <MenuItem x:Name="InfoStatesMenuItem" Header="States" Click="MenuItem_Click"/>
                 <MenuItem x:Name="InfoQueuesMenuItem" Header="Queues" Click="MenuItem_Click"/>
-                <Separator/>
-                <MenuItem x:Name="LogOut" Header="Log out" Click="MenuItem_Click"/>
-                <MenuItem x:Name="Exit" Header="Exit" Click="MenuItem_Click"/>
             </MenuItem>
             <MenuItem Header="Stats">
                 <MenuItem Header="General" x:Name="StatsGeneralMenuItem" Click="MenuItem_Click"/>

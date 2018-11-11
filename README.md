@@ -18,4 +18,4 @@ W4PFFW provides all of the monitoring features available on the web user interfa
 - Pf statistics collected over logs are displayed in bar charts and top lists. Statistics over compressed log files are supported too.
 - You can monitor interfaces, packet transfer, pf states, and kernel memory management on the graphs.
 
-![Dashboard](https://github.com/sonertari/W4PFFW/blob/master/screenshots/W4PffwDashboard.png)
+![Dashboard](https://github.com/sonertari/W4PFFW/blob/master/PFFW/screenshots/W4PffwDashboard.png)

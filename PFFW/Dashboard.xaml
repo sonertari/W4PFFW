@@ -94,9 +94,9 @@ along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <Ellipse x:Name="systemRunningElipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Ellipse x:Name="systemRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
                         <Label x:Name="systemRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
-                        <Ellipse x:Name="systemErrorElipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Ellipse x:Name="systemErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
                         <Label x:Name="systemError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
                         <Label x:Name="systemTitle" Content="System" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
                     </Grid>
@@ -113,9 +113,9 @@ along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <Ellipse x:Name="opensshRunningElipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Ellipse x:Name="opensshRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
                         <Label x:Name="opensshRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
-                        <Ellipse x:Name="opensshErrorElipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Ellipse x:Name="opensshErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
                         <Label x:Name="opensshError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
                         <Label x:Name="opensshTitle" Content="OpenSSH" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
                     </Grid>
@@ -132,9 +132,9 @@ along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <Ellipse x:Name="symuxRunningElipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Ellipse x:Name="symuxRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
                         <Label x:Name="symuxRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
-                        <Ellipse x:Name="symuxErrorElipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Ellipse x:Name="symuxErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
                         <Label x:Name="symuxError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
                         <Label x:Name="symuxTitle" Content="Symux" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
                     </Grid>
@@ -157,9 +157,9 @@ along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <Ellipse x:Name="pfRunningElipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Ellipse x:Name="pfRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
                         <Label x:Name="pfRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
-                        <Ellipse x:Name="pfErrorElipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Ellipse x:Name="pfErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
                         <Label x:Name="pfError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
                         <Label x:Name="pfTitle" Content="Packet Filter" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
                     </Grid>
@@ -176,9 +176,9 @@ along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <Ellipse x:Name="ftpproxyRunningElipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Ellipse x:Name="ftpproxyRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
                         <Label x:Name="ftpproxyRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
-                        <Ellipse x:Name="ftpproxyErrorElipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Ellipse x:Name="ftpproxyErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
                         <Label x:Name="ftpproxyError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
                         <Label x:Name="ftpproxyTitle" Content="FTP Proxy" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
                     </Grid>
@@ -201,9 +201,9 @@ along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <Ellipse x:Name="dhcpdRunningElipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Ellipse x:Name="dhcpdRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
                         <Label x:Name="dhcpdRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
-                        <Ellipse x:Name="dhcpdErrorElipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Ellipse x:Name="dhcpdErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
                         <Label x:Name="dhcpdError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
                         <Label x:Name="dhcpdTitle" Content="DHCP Server" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
                     </Grid>
@@ -220,9 +220,9 @@ along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <Ellipse x:Name="httpdRunningElipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Ellipse x:Name="httpdRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
                         <Label x:Name="httpdRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
-                        <Ellipse x:Name="httpdErrorElipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Ellipse x:Name="httpdErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
                         <Label x:Name="httpdError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
                         <Label x:Name="httpdTitle" Content="Web Server" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
                     </Grid>
@@ -245,9 +245,9 @@ along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <Ellipse x:Name="namedRunningElipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Ellipse x:Name="namedRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
                         <Label x:Name="namedRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
-                        <Ellipse x:Name="namedErrorElipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Ellipse x:Name="namedErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
                         <Label x:Name="namedError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
                         <Label x:Name="namedTitle" Content="DNS Server" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
                     </Grid>
@@ -264,9 +264,9 @@ along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <Ellipse x:Name="symonRunningElipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Ellipse x:Name="symonRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
                         <Label x:Name="symonRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
-                        <Ellipse x:Name="symonErrorElipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Ellipse x:Name="symonErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
                         <Label x:Name="symonError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
                         <Label x:Name="symonTitle" Content="Symon" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
                     </Grid>

@@ -59,15 +59,15 @@ namespace PFFW
             InitializeComponent();
 
             serviceStatusFields = new Dictionary<string, ServiceStatusFields> {
-                { "system", new ServiceStatusFields(systemRunning, systemRunningElipse, systemError, systemErrorElipse, systemStatus) },
-                { "pf", new ServiceStatusFields(pfRunning, pfRunningElipse, pfError, pfErrorElipse, pfStatus) },
-                { "dhcpd", new ServiceStatusFields(dhcpdRunning, dhcpdRunningElipse, dhcpdError, dhcpdErrorElipse, dhcpdStatus) },
-                { "named", new ServiceStatusFields(namedRunning, namedRunningElipse, namedError, namedErrorElipse, namedStatus) },
-                { "openssh", new ServiceStatusFields(opensshRunning, opensshRunningElipse, opensshError, opensshErrorElipse, opensshStatus) },
-                { "ftp-proxy", new ServiceStatusFields(ftpproxyRunning, ftpproxyRunningElipse, ftpproxyError, ftpproxyErrorElipse, ftpproxyStatus) },
-                { "httpd", new ServiceStatusFields(httpdRunning, httpdRunningElipse, httpdError, httpdErrorElipse, httpdStatus) },
-                { "symon", new ServiceStatusFields(symonRunning, symonRunningElipse, symonError, symonErrorElipse, symonStatus) },
-                { "symux", new ServiceStatusFields(symuxRunning, symuxRunningElipse, symuxError, symuxErrorElipse, symuxStatus) },
+                { "system", new ServiceStatusFields(systemRunning, systemRunningEllipse, systemError, systemErrorEllipse, systemStatus) },
+                { "pf", new ServiceStatusFields(pfRunning, pfRunningEllipse, pfError, pfErrorEllipse, pfStatus) },
+                { "dhcpd", new ServiceStatusFields(dhcpdRunning, dhcpdRunningEllipse, dhcpdError, dhcpdErrorEllipse, dhcpdStatus) },
+                { "named", new ServiceStatusFields(namedRunning, namedRunningEllipse, namedError, namedErrorEllipse, namedStatus) },
+                { "openssh", new ServiceStatusFields(opensshRunning, opensshRunningEllipse, opensshError, opensshErrorEllipse, opensshStatus) },
+                { "ftp-proxy", new ServiceStatusFields(ftpproxyRunning, ftpproxyRunningEllipse, ftpproxyError, ftpproxyErrorEllipse, ftpproxyStatus) },
+                { "httpd", new ServiceStatusFields(httpdRunning, httpdRunningEllipse, httpdError, httpdErrorEllipse, httpdStatus) },
+                { "symon", new ServiceStatusFields(symonRunning, symonRunningEllipse, symonError, symonErrorEllipse, symonStatus) },
+                { "symux", new ServiceStatusFields(symuxRunning, symuxRunningEllipse, symuxError, symuxErrorEllipse, symuxStatus) },
                 };
         }
 
@@ -119,6 +119,10 @@ namespace PFFW
             while (it.MoveNext())
             {
                 string key = it.Current.Key;
+                if (!serviceStatusFields.ContainsKey(key))
+                {
+                    continue;
+                }
 
                 serviceStatusFields[key].running.Content = jsonStatus[key]["Status"];
                 if (serviceStatusFields[key].running.Content.ToString().Equals("R"))

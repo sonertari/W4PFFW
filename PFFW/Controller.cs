@@ -20,6 +20,7 @@
 using Newtonsoft.Json;
 using Renci.SshNet;
 using System;
+using System.Collections.Generic;
 
 namespace PFFW
 {
@@ -34,8 +35,7 @@ namespace PFFW
 
         public string previousHost;
 
-        // Currently unused, we might use it to trust the server cert in the future
-        private string hostname;
+        public string hostname;
 
         public class CommandOutput
         {
@@ -83,14 +83,14 @@ namespace PFFW
 
             if (connect())
             {
-                var sshCmd = ssh.CreateCommand("hostname");
+                var sshCmd = ssh.CreateCommand(JsonConvert.SerializeObject(new List<string> { "en_EN", "system", "GetMyName" }));
                 sshCmd.CommandTimeout = TimeSpan.FromSeconds(10);
 
                 sshCmd.Execute();
 
                 if (sshCmd.ExitStatus == 0)
                 {
-                    hostname = sshCmd.Result.TrimEnd();
+                    hostname = new CommandOutput(JsonConvert.DeserializeObject<string[]>(sshCmd.Result)).output.TrimEnd();
                     retval = true;
                 }
             }
@@ -111,13 +111,13 @@ namespace PFFW
 
         public CommandOutput execute(string model, string cmd, params object[] args)
         {
-            var command = "sh ctlr en_En " + model + " " + cmd;
+            var command = new List<string> { "en_EN", model, cmd };
             foreach (object a in args)
             {
-                command += " '" + a.ToString() + "'";
+                command.Add(a.ToString());
             }
 
-            return run(command);
+            return run(JsonConvert.SerializeObject(command));
         }
 
         private CommandOutput run(string command)

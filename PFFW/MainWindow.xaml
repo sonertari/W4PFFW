@@ -23,7 +23,7 @@ along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="PFFW 6.5" WindowStartupLocation="CenterScreen" Icon="{DynamicResource ComixWallLogo}" d:DesignWidth="400" d:DesignHeight="300">
+        Title="PFFW 6.7" WindowStartupLocation="CenterScreen" Icon="{DynamicResource ComixWallLogo}" d:DesignWidth="400" d:DesignHeight="300">
     <Window.Resources>
         <BitmapImage x:Key="ComixWallLogo" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="comixwall.ico"/>
     </Window.Resources>

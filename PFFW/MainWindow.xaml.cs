@@ -123,6 +123,7 @@ namespace PFFW
                 controller.previousHost = controller.host;
             }
             menu.Visibility = Visibility.Visible;
+            Application.Current.MainWindow.Title += " - " + controller.hostname;
             showPage(typeof(Dashboard));
         }
 
@@ -131,6 +132,7 @@ namespace PFFW
             controller.logOut();
 
             menu.Visibility = Visibility.Hidden;
+            Application.Current.MainWindow.Title = "PFFW 6.7";
             showPage(typeof(Login));
         }
 

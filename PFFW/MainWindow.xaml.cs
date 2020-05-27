@@ -26,6 +26,8 @@ namespace PFFW
 {
     public partial class Main : Window
     {
+        private const string VERSION = "PFFW 6.7";
+
         private static Main _self;
         public static Main self
         {
@@ -123,7 +125,7 @@ namespace PFFW
                 controller.previousHost = controller.host;
             }
             menu.Visibility = Visibility.Visible;
-            Application.Current.MainWindow.Title += " - " + controller.hostname;
+            Application.Current.MainWindow.Title = VERSION + " - " + controller.hostname;
             showPage(typeof(Dashboard));
         }
 
@@ -132,7 +134,7 @@ namespace PFFW
             controller.logOut();
 
             menu.Visibility = Visibility.Hidden;
-            Application.Current.MainWindow.Title = "PFFW 6.7";
+            Application.Current.MainWindow.Title = VERSION;
             showPage(typeof(Login));
         }
 

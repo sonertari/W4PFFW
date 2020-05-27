@@ -1,10 +1,10 @@
 # W4PFFW
 
-W4PFFW is a Windows WPF user interface for PFFW. Afaik, PFFW is the only FOSS firewall with Web, Android, and Windows UI for monitoring.
+W4PFFW is a Windows WPF user interface for [PFFW](https://github.com/sonertari/PFFW) and [UTMFW](https://github.com/sonertari/UTMFW).
 
 You can find a couple of screenshots on the [wiki](https://github.com/sonertari/W4PFFW/wiki).
 
-The installation file is available for download at [w4pffw65\_20190520.zip](https://drive.google.com/file/d/1I68VOJcE1sijLfKTlr6jTkEPK8SJETNc/view?usp=sharing). Make sure the SHA256 checksum is correct: 8ff44feb3bac04567ea4364ab8949a06d3e510c21ba2dbf6e09cbe4cebce1494.
+The installation file is available for download at [w4pffw67\_20200527.zip](https://drive.google.com/file/d/1VSQbvirfG2sBvbZkQpp4hP32cL17GWUG/view?usp=sharing). Make sure the SHA256 checksum is correct: fe3a2c7d8f2d5a6379181c927c32fb894a8f7738f250d52f1b9264998260d913.
 
 W4PFFW is part of the PFFW project.
 

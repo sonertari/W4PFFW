@@ -30,7 +30,7 @@ namespace PFFW
             InitializeComponent();
 
             layout = "transfer";
-            
+
             bitmaps = new Dictionary<string, BitmapImage> {
                 { "Data Transfer", null }
                 };

@@ -170,14 +170,6 @@ namespace PFFW
                 {
                     bmp.StreamSource = stream;
                 }
-                else
-                {
-                    // Try http if ssh fails
-                    //1540861800_404e00f4044d07242a77f802e457f774
-                    var hash = file.Split('_')[1];
-                    bmp.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
-                    bmp.UriSource = new Uri(@"http://" + Main.controller.host + @"/symon/graph.php?" + hash, UriKind.Absolute);
-                }
                 bmp.EndInit();
 
                 bitmaps[key] = bmp;

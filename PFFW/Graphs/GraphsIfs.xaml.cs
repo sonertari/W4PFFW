@@ -30,7 +30,7 @@ namespace PFFW
             InitializeComponent();
 
             layout = "ifs";
-            
+
             bitmaps = new Dictionary<string, BitmapImage> {
                 { "Internal Interface", null },
                 { "External Interface", null },

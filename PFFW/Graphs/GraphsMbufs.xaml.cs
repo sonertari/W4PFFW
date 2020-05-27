@@ -30,7 +30,7 @@ namespace PFFW
             InitializeComponent();
 
             layout = "mbufs";
-            
+
             bitmaps = new Dictionary<string, BitmapImage> {
                 { "Mbuf Statistics", null }
                 };

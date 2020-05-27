@@ -1,5 +1,5 @@
 ﻿<!--
-Copyright (C) 2017-2018 Soner Tari
+Copyright (C) 2017-2020 Soner Tari
 
 This file is part of PFFW.
 
@@ -274,6 +274,6 @@ along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
                 </Grid>
             </Grid>
         </Grid>
-        <Label x:Name="copyright" Content="Copyright (C) 2018 Soner Tari. All rights reserved." Grid.Row="3" HorizontalAlignment="Left"/>
+        <Label x:Name="copyright" Content="Copyright (C) 2020 Soner Tari. All rights reserved." Grid.Row="3" HorizontalAlignment="Left"/>
     </Grid>
 </local:InfoBase>

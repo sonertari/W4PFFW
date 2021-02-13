@@ -1,5 +1,5 @@
 ﻿<!--
-Copyright (C) 2017-2020 Soner Tari
+Copyright (C) 2017-2021 Soner Tari
 
 This file is part of PFFW.
 
@@ -76,9 +76,12 @@ along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0" MinWidth="200">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -113,13 +116,13 @@ along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <Ellipse x:Name="opensshRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
-                        <Label x:Name="opensshRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
-                        <Ellipse x:Name="opensshErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
-                        <Label x:Name="opensshError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
-                        <Label x:Name="opensshTitle" Content="OpenSSH" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
+                        <Ellipse x:Name="symonRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Label x:Name="symonRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
+                        <Ellipse x:Name="symonErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Label x:Name="symonError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
+                        <Label x:Name="symonTitle" Content="Symon" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
                     </Grid>
-                    <Label x:Name="opensshStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
+                    <Label x:Name="symonStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
                 </Grid>
                 <Grid Grid.Row="2" Background="WhiteSmoke" Margin="5">
                     <Grid.RowDefinitions>
@@ -140,9 +143,50 @@ along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
                     </Grid>
                     <Label x:Name="symuxStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
                 </Grid>
+                <Grid Grid.Row="3" Background="WhiteSmoke" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Ellipse x:Name="collectdRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Label x:Name="collectdRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
+                        <Ellipse x:Name="collectdErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Label x:Name="collectdError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
+                        <Label x:Name="collectdTitle" Content="Collectd" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
+                    </Grid>
+                    <Label x:Name="collectdStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
+                </Grid>
+                <Grid Grid.Row="4" Background="WhiteSmoke" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Ellipse x:Name="opensshRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Label x:Name="opensshRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
+                        <Ellipse x:Name="opensshErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Label x:Name="opensshError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
+                        <Label x:Name="opensshTitle" Content="OpenSSH" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
+                    </Grid>
+                    <Label x:Name="opensshStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
+                </Grid>
             </Grid>
             <Grid Grid.Column="1" MinWidth="200">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
@@ -176,21 +220,15 @@ along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <Ellipse x:Name="ftpproxyRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
-                        <Label x:Name="ftpproxyRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
-                        <Ellipse x:Name="ftpproxyErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
-                        <Label x:Name="ftpproxyError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
-                        <Label x:Name="ftpproxyTitle" Content="FTP Proxy" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
+                        <Ellipse x:Name="namedRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Label x:Name="namedRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
+                        <Ellipse x:Name="namedErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Label x:Name="namedError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
+                        <Label x:Name="namedTitle" Content="DNS Server" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
                     </Grid>
-                    <Label x:Name="ftpproxyStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
+                    <Label x:Name="namedStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
                 </Grid>
-            </Grid>
-            <Grid Grid.Column="2" MinWidth="200">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0" Background="WhiteSmoke" Margin="5">
+                <Grid Grid.Row="2" Background="WhiteSmoke" Margin="5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -209,7 +247,7 @@ along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
                     </Grid>
                     <Label x:Name="dhcpdStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
                 </Grid>
-                <Grid Grid.Row="1" Background="WhiteSmoke" Margin="5">
+                <Grid Grid.Row="3" Background="WhiteSmoke" Margin="5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -220,17 +258,39 @@ along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <Ellipse x:Name="httpdRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
-                        <Label x:Name="httpdRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
-                        <Ellipse x:Name="httpdErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
-                        <Label x:Name="httpdError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
-                        <Label x:Name="httpdTitle" Content="Web Server" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
+                        <Ellipse x:Name="ftpproxyRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Label x:Name="ftpproxyRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
+                        <Ellipse x:Name="ftpproxyErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Label x:Name="ftpproxyError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
+                        <Label x:Name="ftpproxyTitle" Content="FTP Proxy" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
                     </Grid>
-                    <Label x:Name="httpdStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
+                    <Label x:Name="ftpproxyStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
+                </Grid>
+                <Grid Grid.Row="4" Background="WhiteSmoke" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Ellipse x:Name="p3scanRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Label x:Name="p3scanRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
+                        <Ellipse x:Name="p3scanErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Label x:Name="p3scanError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
+                        <Label x:Name="p3scanTitle" Content="POP3 Proxy" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
+                    </Grid>
+                    <Label x:Name="p3scanStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
                 </Grid>
             </Grid>
-            <Grid Grid.Column="3" MinWidth="200">
+            <Grid Grid.Column="2" MinWidth="200">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
@@ -245,13 +305,13 @@ along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <Ellipse x:Name="namedRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
-                        <Label x:Name="namedRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
-                        <Ellipse x:Name="namedErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
-                        <Label x:Name="namedError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
-                        <Label x:Name="namedTitle" Content="DNS Server" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
+                        <Ellipse x:Name="sslproxyRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Label x:Name="sslproxyRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
+                        <Ellipse x:Name="sslproxyErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Label x:Name="sslproxyError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
+                        <Label x:Name="sslproxyTitle" Content="SSL Proxy" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
                     </Grid>
-                    <Label x:Name="namedStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
+                    <Label x:Name="sslproxyStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
                 </Grid>
                 <Grid Grid.Row="1" Background="WhiteSmoke" Margin="5">
                     <Grid.RowDefinitions>
@@ -264,16 +324,261 @@ along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <Ellipse x:Name="symonRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
-                        <Label x:Name="symonRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
-                        <Ellipse x:Name="symonErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
-                        <Label x:Name="symonError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
-                        <Label x:Name="symonTitle" Content="Symon" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
+                        <Ellipse x:Name="clamdRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Label x:Name="clamdRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
+                        <Ellipse x:Name="clamdErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Label x:Name="clamdError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
+                        <Label x:Name="clamdTitle" Content="Virus Filter" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
                     </Grid>
-                    <Label x:Name="symonStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
+                    <Label x:Name="clamdStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
+                </Grid>
+                <Grid Grid.Row="2" Background="WhiteSmoke" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Ellipse x:Name="freshclamRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Label x:Name="freshclamRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
+                        <Ellipse x:Name="freshclamErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Label x:Name="freshclamError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
+                        <Label x:Name="freshclamTitle" Content="Virus DB Update" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
+                    </Grid>
+                    <Label x:Name="freshclamStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
+                </Grid>
+                <Grid Grid.Row="3" Background="WhiteSmoke" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Ellipse x:Name="spamassassinRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Label x:Name="spamassassinRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
+                        <Ellipse x:Name="spamassassinErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Label x:Name="spamassassinError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
+                        <Label x:Name="spamassassinTitle" Content="SPAM Filter" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
+                    </Grid>
+                    <Label x:Name="spamassassinStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
+                </Grid>
+                <Grid Grid.Row="4" Background="WhiteSmoke" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Ellipse x:Name="smtpgatedRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Label x:Name="smtpgatedRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
+                        <Ellipse x:Name="smtpgatedErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Label x:Name="smtpgatedError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
+                        <Label x:Name="smtpgatedTitle" Content="SMTP Proxy" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
+                    </Grid>
+                    <Label x:Name="smtpgatedStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="3" MinWidth="200">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Background="WhiteSmoke" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Ellipse x:Name="e2guardianRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Label x:Name="e2guardianRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
+                        <Ellipse x:Name="e2guardianErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Label x:Name="e2guardianError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
+                        <Label x:Name="e2guardianTitle" Content="Web Filter" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
+                    </Grid>
+                    <Label x:Name="e2guardianStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
+                </Grid>
+                <Grid Grid.Row="1" Background="WhiteSmoke" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Ellipse x:Name="imspectorRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Label x:Name="imspectorRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
+                        <Ellipse x:Name="imspectorErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Label x:Name="imspectorError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
+                        <Label x:Name="imspectorTitle" Content="IM Proxy" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
+                    </Grid>
+                    <Label x:Name="imspectorStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
+                </Grid>
+                <Grid Grid.Row="2" Background="WhiteSmoke" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Ellipse x:Name="danteRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Label x:Name="danteRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
+                        <Ellipse x:Name="danteErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Label x:Name="danteError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
+                        <Label x:Name="danteTitle" Content="SOCKS Proxy" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
+                    </Grid>
+                    <Label x:Name="danteStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
+                </Grid>
+                <Grid Grid.Row="3" Background="WhiteSmoke" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Ellipse x:Name="openvpnRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Label x:Name="openvpnRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
+                        <Ellipse x:Name="openvpnErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Label x:Name="openvpnError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
+                        <Label x:Name="openvpnTitle" Content="OpenVPN" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
+                    </Grid>
+                    <Label x:Name="openvpnStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
+                </Grid>
+                <Grid Grid.Row="4" Background="WhiteSmoke" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Ellipse x:Name="spamdRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Label x:Name="spamdRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
+                        <Ellipse x:Name="spamdErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Label x:Name="spamdError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
+                        <Label x:Name="spamdTitle" Content="Spamd" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
+                    </Grid>
+                    <Label x:Name="spamdStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="4" MinWidth="200">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Background="WhiteSmoke" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Ellipse x:Name="snortRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Label x:Name="snortRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
+                        <Ellipse x:Name="snortErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Label x:Name="snortError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
+                        <Label x:Name="snortTitle" Content="IDS" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
+                    </Grid>
+                    <Label x:Name="snortStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
+                </Grid>
+                <Grid Grid.Row="1" Background="WhiteSmoke" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Ellipse x:Name="snortinlineRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Label x:Name="snortinlineRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
+                        <Ellipse x:Name="snortinlineErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Label x:Name="snortinlineError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
+                        <Label x:Name="snortinlineTitle" Content="Inline IPS" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
+                    </Grid>
+                    <Label x:Name="snortinlineStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
+                </Grid>
+                <Grid Grid.Row="2" Background="WhiteSmoke" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Ellipse x:Name="snortipsRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Label x:Name="snortipsRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
+                        <Ellipse x:Name="snortipsErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Label x:Name="snortipsError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
+                        <Label x:Name="snortipsTitle" Content="Passive IPS" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
+                    </Grid>
+                    <Label x:Name="snortipsStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
+                </Grid>
+                <Grid Grid.Row="3" Background="WhiteSmoke" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Ellipse x:Name="httpdRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Label x:Name="httpdRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
+                        <Ellipse x:Name="httpdErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Label x:Name="httpdError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
+                        <Label x:Name="httpdTitle" Content="Web User Interface" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
+                    </Grid>
+                    <Label x:Name="httpdStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
                 </Grid>
             </Grid>
         </Grid>
-        <Label x:Name="copyright" Content="Copyright (C) 2020 Soner Tari. All rights reserved." Grid.Row="3" HorizontalAlignment="Left"/>
+        <Label x:Name="copyright" Content="Copyright (C) 2021 Soner Tari. All rights reserved." Grid.Row="3" HorizontalAlignment="Left"/>
     </Grid>
 </local:InfoBase>

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2017-2020 Soner Tari
+ * Copyright (C) 2017-2021 Soner Tari
  *
  * This file is part of PFFW.
  *
@@ -68,7 +68,22 @@ namespace PFFW
                 { "httpd", new ServiceStatusFields(httpdRunning, httpdRunningEllipse, httpdError, httpdErrorEllipse, httpdStatus) },
                 { "symon", new ServiceStatusFields(symonRunning, symonRunningEllipse, symonError, symonErrorEllipse, symonStatus) },
                 { "symux", new ServiceStatusFields(symuxRunning, symuxRunningEllipse, symuxError, symuxErrorEllipse, symuxStatus) },
-                };
+                { "sslproxy", new ServiceStatusFields(sslproxyRunning, sslproxyRunningEllipse, sslproxyError, sslproxyErrorEllipse, sslproxyStatus) },
+                { "e2guardian", new ServiceStatusFields(e2guardianRunning, e2guardianRunningEllipse, e2guardianError, e2guardianErrorEllipse, e2guardianStatus) },
+                { "snort", new ServiceStatusFields(snortRunning, snortRunningEllipse, snortError, snortErrorEllipse, snortStatus) },
+                { "snortinline", new ServiceStatusFields(snortinlineRunning, snortinlineRunningEllipse, snortinlineError, snortinlineErrorEllipse, snortinlineStatus) },
+                { "snortips", new ServiceStatusFields(snortipsRunning, snortipsRunningEllipse, snortipsError, snortipsErrorEllipse, snortipsStatus) },
+                { "spamassassin", new ServiceStatusFields(spamassassinRunning, spamassassinRunningEllipse, spamassassinError, spamassassinErrorEllipse, spamassassinStatus) },
+                { "clamd", new ServiceStatusFields(clamdRunning, clamdRunningEllipse, clamdError, clamdErrorEllipse, clamdStatus) },
+                { "freshclam", new ServiceStatusFields(freshclamRunning, freshclamRunningEllipse, freshclamError, freshclamErrorEllipse, freshclamStatus) },
+                { "p3scan", new ServiceStatusFields(p3scanRunning, p3scanRunningEllipse, p3scanError, p3scanErrorEllipse, p3scanStatus) },
+                { "smtp-gated", new ServiceStatusFields(smtpgatedRunning, smtpgatedRunningEllipse, smtpgatedError, smtpgatedErrorEllipse, smtpgatedStatus) },
+                { "imspector", new ServiceStatusFields(imspectorRunning, imspectorRunningEllipse, imspectorError, imspectorErrorEllipse, imspectorStatus) },
+                { "openvpn", new ServiceStatusFields(openvpnRunning, openvpnRunningEllipse, openvpnError, openvpnErrorEllipse, openvpnStatus) },
+                { "dante", new ServiceStatusFields(danteRunning, danteRunningEllipse, danteError, danteErrorEllipse, danteStatus) },
+                { "spamd", new ServiceStatusFields(spamdRunning, spamdRunningEllipse, spamdError, spamdErrorEllipse, spamdStatus) },
+                { "collectd", new ServiceStatusFields(collectdRunning, collectdRunningEllipse, collectdError, collectdErrorEllipse, collectdStatus) },
+        };
         }
 
         override public void SaveState()
@@ -101,7 +116,7 @@ namespace PFFW
         override protected void fetch()
         {
             mServiceStatus = Main.controller.execute("system", "GetServiceStatus").output;
-            jsonStatus = JsonConvert.DeserializeObject<JObject>(mServiceStatus);
+            jsonStatus = JsonConvert.DeserializeObject<JObject>(mServiceStatus).GetValue("status") as JObject;
 
             var strReloadRate = Main.controller.execute("pf", "GetReloadRate").output;
 

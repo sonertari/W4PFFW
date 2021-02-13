@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2017-2020 Soner Tari
+ * Copyright (C) 2017-2021 Soner Tari
  *
  * This file is part of PFFW.
  *
@@ -26,7 +26,7 @@ namespace PFFW
 {
     public partial class Main : Window
     {
-        private const string VERSION = "PFFW 6.7";
+        private const string VERSION = "PFFW 6.8.1";
 
         private static Main _self;
         public static Main self

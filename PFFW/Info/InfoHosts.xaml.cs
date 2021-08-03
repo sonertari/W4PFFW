@@ -32,8 +32,8 @@ namespace PFFW
         private int mDhcpdStatus;
         private string mDhcpdInfo;
 
-        private int mNamedStatus;
-        private string mNamedInfo;
+        private int mDnsmasqStatus;
+        private string mDnsmasqInfo;
 
         private string mArpTableInfo;
         private string mLeasesInfo;
@@ -52,8 +52,8 @@ namespace PFFW
             (cache as InfoHostsCache).mDhcpdStatus = mDhcpdStatus;
             (cache as InfoHostsCache).mDhcpdInfo = mDhcpdInfo;
 
-            (cache as InfoHostsCache).mNamedStatus = mNamedStatus;
-            (cache as InfoHostsCache).mNamedInfo = mNamedInfo;
+            (cache as InfoHostsCache).mDnsmasqStatus = mDnsmasqStatus;
+            (cache as InfoHostsCache).mDnsmasqInfo = mDnsmasqInfo;
 
             (cache as InfoHostsCache).mArpTableInfo = mArpTableInfo;
             (cache as InfoHostsCache).mLeasesInfo = mLeasesInfo;
@@ -70,8 +70,8 @@ namespace PFFW
                 mDhcpdStatus = (cache as InfoHostsCache).mDhcpdStatus;
                 mDhcpdInfo = (cache as InfoHostsCache).mDhcpdInfo;
 
-                mNamedStatus = (cache as InfoHostsCache).mNamedStatus;
-                mNamedInfo = (cache as InfoHostsCache).mNamedInfo;
+                mDnsmasqStatus = (cache as InfoHostsCache).mDnsmasqStatus;
+                mDnsmasqInfo = (cache as InfoHostsCache).mDnsmasqInfo;
 
                 mArpTableInfo = (cache as InfoHostsCache).mArpTableInfo;
                 mLeasesInfo = (cache as InfoHostsCache).mLeasesInfo;
@@ -88,8 +88,8 @@ namespace PFFW
             mDhcpdStatus = Main.controller.execute("dhcpd", "IsRunning").status;
             mDhcpdInfo = Main.controller.execute("dhcpd", "GetProcList").output;
 
-            mNamedStatus = Main.controller.execute("named", "IsRunning").status;
-            mNamedInfo = Main.controller.execute("named", "GetProcList").output;
+            mDnsmasqStatus = Main.controller.execute("dnsmasq", "IsRunning").status;
+            mDnsmasqInfo = Main.controller.execute("dnsmasq", "GetProcList").output;
 
             mArpTableInfo = Main.controller.execute("dhcpd", "GetArpTable").output;
             mLeasesInfo = Main.controller.execute("dhcpd", "GetLeases").output;
@@ -108,11 +108,11 @@ namespace PFFW
             var jsonArr = JsonConvert.DeserializeObject<JArray>(mDhcpdInfo);
             dhcpdDataGrid.ItemsSource = JsonConvert.DeserializeObject<string[][]>(jsonArr.ToString());
 
-            namedStatusImage.Source = Resources[mNamedStatus == 0 ? "run" : "stop"] as BitmapImage;
-            namedStatus.Content = mNamedStatus == 0 ? "DNS Server is running" : "DNS Server is not running";
+            dnsmasqStatusImage.Source = Resources[mDnsmasqStatus == 0 ? "run" : "stop"] as BitmapImage;
+            dnsmasqStatus.Content = mDnsmasqStatus == 0 ? "DNS Forwarder is running" : "DNS Forwarder is not running";
 
-            jsonArr = JsonConvert.DeserializeObject<JArray>(mNamedInfo);
-            namedDataGrid.ItemsSource = JsonConvert.DeserializeObject<string[][]>(jsonArr.ToString());
+            jsonArr = JsonConvert.DeserializeObject<JArray>(mDnsmasqInfo);
+            dnsmasqDataGrid.ItemsSource = JsonConvert.DeserializeObject<string[][]>(jsonArr.ToString());
 
             jsonArr = JsonConvert.DeserializeObject<JArray>(mArpTableInfo);
             arpTableDataGrid.ItemsSource = Utils.jsonToStringArray(jsonArr, new List<string> { "IP", "MAC", "Interface", "Expire" });
@@ -126,8 +126,8 @@ namespace PFFW
     {
         public int mDhcpdStatus;
         public string mDhcpdInfo;
-        public int mNamedStatus;
-        public string mNamedInfo;
+        public int mDnsmasqStatus;
+        public string mDnsmasqInfo;
         public string mArpTableInfo;
         public string mLeasesInfo;
     }

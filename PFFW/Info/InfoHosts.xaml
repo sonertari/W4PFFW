@@ -40,8 +40,8 @@ along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
             <ToolBar>
                 <Image x:Name="dhcpdStatusImage" Source="{DynamicResource stop}"/>
                 <Label x:Name="dhcpdStatus" Content="DHCP Server status" />
-                <Image x:Name="namedStatusImage" Source="{DynamicResource stop}"/>
-                <Label x:Name="namedStatus" Content="DNS Server status" />
+                <Image x:Name="dnsmasqStatusImage" Source="{DynamicResource stop}"/>
+                <Label x:Name="dnsmasqStatus" Content="DNS Forwarder status" />
             </ToolBar>
         </Grid>
         <ScrollViewer Grid.Row="1">
@@ -78,8 +78,8 @@ along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
                     </DataGrid.Columns>
                 </DataGrid>
                 <GridSplitter HorizontalAlignment="Stretch" Grid.Row="2" />
-                <Label Content="DNS Server" Grid.Row="3" />
-                <DataGrid x:Name="namedDataGrid" AutoGenerateColumns="False" AlternatingRowBackground="{DynamicResource {x:Static SystemColors.ControlColor}}" AlternationCount="2" Grid.Row="4" >
+                <Label Content="DNS Forwarder" Grid.Row="3" />
+                <DataGrid x:Name="dnsmasqDataGrid" AutoGenerateColumns="False" AlternatingRowBackground="{DynamicResource {x:Static SystemColors.ControlColor}}" AlternationCount="2" Grid.Row="4" >
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="PID" Binding="{Binding [0]}" />
                         <DataGridTextColumn Header="STARTED" Binding="{Binding [1]}" />

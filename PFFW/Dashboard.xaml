@@ -220,13 +220,13 @@ along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <Ellipse x:Name="namedRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
-                        <Label x:Name="namedRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
-                        <Ellipse x:Name="namedErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
-                        <Label x:Name="namedError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
-                        <Label x:Name="namedTitle" Content="DNS Server" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
+                        <Ellipse x:Name="dnsmasqRunningEllipse" Fill="Blue" Height="25" Width="25" Margin="5,5,0,0" Grid.Column="0" />
+                        <Label x:Name="dnsmasqRunning" Content="R" HorizontalAlignment="Center" Margin="5,5,0,0" Grid.Column="0"/>
+                        <Ellipse x:Name="dnsmasqErrorEllipse" Fill="Green" Height="25" Width="25" Margin="2,5,0,0" Grid.Column="1" />
+                        <Label x:Name="dnsmasqError" Content="E" HorizontalAlignment="Center" Margin="2,5,0,0" Grid.Column="1"/>
+                        <Label x:Name="dnsmasqTitle" Content="DNS Forwarder" FontWeight="Bold" Margin="2,5,0,0" Grid.Column="2"/>
                     </Grid>
-                    <Label x:Name="namedStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
+                    <Label x:Name="dnsmasqStatus" Content="Status" Grid.Row="1" HorizontalAlignment="Right"/>
                 </Grid>
                 <Grid Grid.Row="2" Background="WhiteSmoke" Margin="5">
                     <Grid.RowDefinitions>

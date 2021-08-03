@@ -62,7 +62,7 @@ namespace PFFW
                 { "system", new ServiceStatusFields(systemRunning, systemRunningEllipse, systemError, systemErrorEllipse, systemStatus) },
                 { "pf", new ServiceStatusFields(pfRunning, pfRunningEllipse, pfError, pfErrorEllipse, pfStatus) },
                 { "dhcpd", new ServiceStatusFields(dhcpdRunning, dhcpdRunningEllipse, dhcpdError, dhcpdErrorEllipse, dhcpdStatus) },
-                { "named", new ServiceStatusFields(namedRunning, namedRunningEllipse, namedError, namedErrorEllipse, namedStatus) },
+                { "dnsmasq", new ServiceStatusFields(dnsmasqRunning, dnsmasqRunningEllipse, dnsmasqError, dnsmasqErrorEllipse, dnsmasqStatus) },
                 { "openssh", new ServiceStatusFields(opensshRunning, opensshRunningEllipse, opensshError, opensshErrorEllipse, opensshStatus) },
                 { "ftp-proxy", new ServiceStatusFields(ftpproxyRunning, ftpproxyRunningEllipse, ftpproxyError, ftpproxyErrorEllipse, ftpproxyStatus) },
                 { "httpd", new ServiceStatusFields(httpdRunning, httpdRunningEllipse, httpdError, httpdErrorEllipse, httpdStatus) },

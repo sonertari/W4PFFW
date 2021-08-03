@@ -4,7 +4,7 @@ W4PFFW is a Windows WPF user interface for [PFFW](https://github.com/sonertari/P
 
 You can find a couple of screenshots on the [wiki](https://github.com/sonertari/W4PFFW/wiki).
 
-The installation file is available for download at [w4pffw681\_20210213.zip](https://drive.google.com/file/d/1SOGh6VIdgcpITQ-WnMrgNpy98_K0W0Xf/view?usp=sharing). Make sure the SHA256 checksum is correct: 8c27203d34555b82b3c43ee600abd7aad8721f41ffcb340ef4cd9f22c2842b18.
+The installation file is available for download at [w4pffw693\_20210812.zip](https://drive.google.com/file/d/1Y9Jlb3CBVcQXrNmTwWORQxTx0sgIbwkI/view?usp=sharing). Make sure the SHA256 checksum is correct: 766369609e651b166380184fe846027b56004da8b6c941409640a116bc5baf5c.
 
 W4PFFW is part of the PFFW project.
 

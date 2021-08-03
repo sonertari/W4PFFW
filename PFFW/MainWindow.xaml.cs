@@ -26,7 +26,7 @@ namespace PFFW
 {
     public partial class Main : Window
     {
-        private const string VERSION = "PFFW 6.8.1";
+        private const string VERSION = "PFFW 6.9.3";
 
         private static Main _self;
         public static Main self

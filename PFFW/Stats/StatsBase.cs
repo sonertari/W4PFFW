@@ -195,32 +195,27 @@ namespace PFFW
 
         protected void fetchStats()
         {
-            Mouse.OverrideCursor = Cursors.Wait;
-            try
-            {
-                fetch();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Exception: " + e.Message);
-            }
-            finally
-            {
-                Mouse.OverrideCursor = null;
-            }
+            fetch();
         }
 
         protected abstract void fetch();
 
         virtual protected void updateStats()
         {
-            foreach (string title in chartDefs.Keys)
+            try
             {
-                updateChartData(title);
-                updateChart(title);
+                foreach (string title in chartDefs.Keys)
+                {
+                    updateChartData(title);
+                    updateChart(title);
 
-                updateListsData(title);
-                updateLists(title);
+                    updateListsData(title);
+                    updateLists(title);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Exception: " + e.Message);
             }
         }
 

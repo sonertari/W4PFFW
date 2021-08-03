@@ -144,14 +144,21 @@ namespace PFFW
 
         protected void updateLogsView()
         {
-            int lineCount = 0;
-            if (mLogSize > mLinesPerPage)
+            try
             {
-                lineCount = mLogSize - mLinesPerPage;
-            }
+                int lineCount = 0;
+                if (mLogSize > mLinesPerPage)
+                {
+                    lineCount = mLogSize - mLinesPerPage;
+                }
 
-            var jsonArr = JsonConvert.DeserializeObject<JArray>(mLogs);
-            logsDataGrid.ItemsSource = Utils.jsonToStringArray(jsonArr, new List<string> { "Rule", "Date", "Time", "Act", "Dir", "If", "SrcIP", "SPort", "DstIP", "DPort", "Type", "Log" }, true, lineCount);
+                var jsonArr = JsonConvert.DeserializeObject<JArray>(mLogs);
+                logsDataGrid.ItemsSource = Utils.jsonToStringArray(jsonArr, new List<string> { "Rule", "Date", "Time", "Act", "Dir", "If", "SrcIP", "SPort", "DstIP", "DPort", "Type", "Log" }, true, lineCount);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Exception: " + e.Message);
+            }
         }
 
         private void updateSelections()

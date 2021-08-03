@@ -23,6 +23,7 @@ using System.Windows.Media;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Timers;
+using System.Windows;
 
 namespace PFFW
 {
@@ -137,11 +138,18 @@ namespace PFFW
 
         override protected void refresh()
         {
-            fetchStats();
-            updateDateTimeText();
+            try
+            {
+                fetchStats();
+                updateDateTimeText();
 
-            updateJsonVars();
-            updateStats();
+                updateJsonVars();
+                updateStats();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Exception: " + e.Message);
+            }
         }
 
         void updateDateTimeText()

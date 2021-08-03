@@ -17,8 +17,10 @@
  * along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -130,10 +132,22 @@ namespace PFFW
 
         override protected void refresh()
         {
-            getSelectedDateTime();
-            fetchStats();
-            logFilePicker.refresh();
-            updateStats();
+            Mouse.OverrideCursor = Cursors.Wait;
+            try
+            {
+                getSelectedDateTime();
+                fetchStats();
+                logFilePicker.refresh();
+                updateStats();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Exception: " + e.Message);
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
+            }
         }
 
         override protected void fetch()

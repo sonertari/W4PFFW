@@ -17,6 +17,7 @@
  * along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -102,9 +103,16 @@ namespace PFFW
                 restoreStateBase();
                 logFilePicker.restoreState(cache);
 
-                updateGeneralStatsTable();
-                updateRequestsByDateTable();
-                updateGeneralStats();
+                try
+                {
+                    updateGeneralStatsTable();
+                    updateRequestsByDateTable();
+                    updateGeneralStats();
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Exception: " + e.Message);
+                }
 
                 return true;
             }
@@ -130,11 +138,18 @@ namespace PFFW
 
         override protected void refresh()
         {
-            fetchStats();
+            try
+            {
+                fetchStats();
 
-            logFilePicker.refresh();
+                logFilePicker.refresh();
 
-            updateStats();
+                updateStats();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Exception: " + e.Message);
+            }
         }
 
         override protected void fetch()

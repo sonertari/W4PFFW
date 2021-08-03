@@ -66,16 +66,11 @@ namespace PFFW
 
         protected void refresh()
         {
-            fetchLogs();
-            updateView();
-        }
-
-        protected void fetchLogs()
-        {
             Mouse.OverrideCursor = Cursors.Wait;
             try
             {
                 fetch();
+                updateView();
             }
             catch (Exception e)
             {

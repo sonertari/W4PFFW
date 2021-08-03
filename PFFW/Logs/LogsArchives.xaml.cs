@@ -164,8 +164,15 @@ namespace PFFW
 
         protected void updateLogsView()
         {
-            var jsonArr = JsonConvert.DeserializeObject<JArray>(mLogs);
-            logsDataGrid.ItemsSource = Utils.jsonToStringArray(jsonArr, new List<string> { "Rule", "Date", "Time", "Act", "Dir", "If", "SrcIP", "SPort", "DstIP", "DPort", "Type", "Log" }, true, mStartLine);
+            try
+            {
+                var jsonArr = JsonConvert.DeserializeObject<JArray>(mLogs);
+                logsDataGrid.ItemsSource = Utils.jsonToStringArray(jsonArr, new List<string> { "Rule", "Date", "Time", "Act", "Dir", "If", "SrcIP", "SPort", "DstIP", "DPort", "Type", "Log" }, true, mStartLine);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Exception: " + e.Message);
+            }
         }
 
         private void updateSelections()

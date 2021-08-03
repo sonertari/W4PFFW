@@ -17,6 +17,7 @@
  * along with PFFW.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
@@ -107,15 +108,22 @@ namespace PFFW
 
         override protected void refresh()
         {
-            getSelectedDateTime();
+            try
+            {
+                getSelectedDateTime();
 
-            fetchStats();
+                fetchStats();
 
-            logFilePicker.refresh();
-            updateDateTimeText();
+                logFilePicker.refresh();
+                updateDateTimeText();
 
-            updateJsonVars();
-            updateStats();
+                updateJsonVars();
+                updateStats();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Exception: " + e.Message);
+            }
         }
 
         override protected void fetch()

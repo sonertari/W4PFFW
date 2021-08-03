@@ -130,7 +130,7 @@ namespace PFFW
                 // Use CreateCommand() method to set the command timeout, do not use RunCommand()
                 //var sshCmd = Main.self.ssh.RunCommand(command);
                 var sshCmd = ssh.CreateCommand(command);
-                sshCmd.CommandTimeout = TimeSpan.FromSeconds(10);
+                sshCmd.CommandTimeout = TimeSpan.FromSeconds(30);
 
                 // TODO: Use async command execution instead? But what do we display until async exec is completed?
                 sshCmd.Execute();

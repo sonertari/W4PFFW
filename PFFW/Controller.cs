@@ -137,6 +137,11 @@ namespace PFFW
 
                 output = new CommandOutput(JsonConvert.DeserializeObject<string[]>(sshCmd.Result));
 
+                if (output.status.Equals(1))
+                {
+                    throw new Exception(output.error);
+                }
+
                 // ATTENTION: The exit status of IsRunning command is 1, so we cannot enable the following lines.
                 // TODO: Should we try to enable the following to handle error conditions here?
 
